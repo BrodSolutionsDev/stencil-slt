@@ -1,0 +1,87 @@
+---
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.categorypage_products_per_page}}
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+{{#if category.image}}
+<div class="category-main-image">
+    {{> components/common/responsive-img
+        image=category.image
+        fallback_size=theme_settings.zoom_size
+        lazyload=theme_settings.lazyload_mode
+    }}
+</div>
+{{/if}}
+
+<div class="page category">
+    {{#if category.faceted_search_enabled}}
+        <aside class="page-sidebar" id="faceted-search-container">
+            {{> components/category/sidebar}}
+        </aside>
+    {{else if category.subcategories}}
+        <aside class="page-sidebar" id="faceted-search-container">
+            {{> components/category/sidebar}}
+        </aside>
+    {{else if category.shop_by_price}}
+        {{#if theme_settings.shop_by_price_visibility}}
+             <aside class="page-sidebar" id="faceted-search-container">
+                {{> components/category/sidebar}}
+            </aside>
+        {{/if}}
+    {{/if}}
+
+    <main class="page-content" id="product-listing-container">
+      <h1 class="page-heading">{{category.name}}</h1>
+      {{{region name="category_below_header"}}}
+      {{{category.description}}}
+      <!--LONE STAR CUSTOM SUBCATEGORY GRID-->
+      
+      {{#if category.subcategories}}
+          <div class="subcategory-grid {{#if theme_settings.show_mobile_subcategory_grid '===' true}} visible-on-mobile{{/if}}">
+            {{#if theme_settings.visible_subcategoires '==' true}}
+              <ul class="navList">
+                  {{#each category.subcategories}}
+                      <li class="subcategory-item">
+                          <div class="subcategory-link-container">
+                              <a class="subcateogory-image-link" href="{{url}}" alt="{{name}}">
+                                {{#if image}}
+                                      <div class="subcategory-image uploaded" style="background-image: url('{{getImage image}}');"><br /></div></a>
+                                    {{else}}
+                                      <div class="subcategory-image placeholder-image zoom-image-container"><br /></div></a>
+                                {{/if}}
+                          </div>
+                              <a class="subcategory-link" href="{{url}}" alt="{{name}}"><span class="subcategory-name">{{name}}</span></a>
+                          <div class="clear"></div>
+                      </li>
+                  {{/each}}
+              </ul>
+            {{/if}}
+      {{/if}}
+        {{#if category.products}}
+            {{> components/category/product-listing settings=../settings}}
+        {{else}}
+            <p>{{lang 'categories.no_products'}}</p>
+        {{/if}}
+        {{{region name="category_below_content"}}}
+    </main>
+
+        <a class="navUser-action navUser-item--compare bottom" href="{{urls.compare}}" data-compare-nav>{{lang 'Compare Selected'}}<span class="countPill countPill--positive countPill--alt compare"></span></a>
+
+</div>
+
+{{/partial}}
+{{> layout/base}}

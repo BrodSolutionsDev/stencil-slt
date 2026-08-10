@@ -1,0 +1,709 @@
+---
+products:
+    new:
+        limit: {{theme_settings.homepage_new_products_count}}
+    featured:
+        limit: {{theme_settings.homepage_featured_products_count}}
+    top_sellers:
+        limit: {{theme_settings.homepage_top_products_count}}
+carousel: {{theme_settings.homepage_show_carousel}}
+blog:
+    recent_posts:
+        limit: {{theme_settings.homepage_blog_posts_count}}
+  
+---
+{{#partial "hero"}}
+{{{region name="home_below_menu"}}}
+{{/partial}}
+
+{{#partial "page"}}
+
+  {{#each shipping_messages}}
+    {{> components/common/alert/alert-info message}}
+  {{/each}}
+
+<div class="main full home">
+  {{#if carousel}}
+        {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows}}
+    {{/if}}
+    {{{region name="home_below_carousel"}}}
+  {{{region name="home_above_product_sliders"}}}
+
+  <!-- BEGIN PRODUCT SLIDERS -->
+  <section class="home-product-sliders">
+    {{#for 1 3}}
+      {{assignVar 'layout' (lookup ../theme_settings (multiConcat 'home_slider_' $index '_layout'))}}
+      {{assignVar 'categoryId' (lookup ../theme_settings (multiConcat 'home_slider_' $index '_category_id'))}}
+      {{assignVar 'sortOrder' (lookup ../theme_settings (multiConcat 'home_slider_' $index '_sort_order'))}}
+      {{#if (getVar 'layout') '==' 'tabs'}}
+        {{> components/custom/home/slider/product-slider-tabs category_id=(getVar 'categoryId') sort_order=(getVar 'sortOrder') categories=../../categories}}
+      {{else}}
+        <div class="mobile-slider">
+          {{> components/custom/home/slider/product-slider-tabs category_id=(getVar 'categoryId') sort_order=(getVar 'sortOrder') categories=../../categories}}
+        </div>
+        <div class="desktop-slider">
+          {{> components/custom/home/slider/product-slider-full category_id=(getVar 'categoryId') sort_order=(getVar 'sortOrder') categories=../../categories limit_subcategory=5}}
+        </div>
+      {{/if}}
+    {{/for}}
+  </section>
+  <!-- END PRODUCT SLIDERS -->
+{{{region name="home_above_blog_posts"}}}
+  <!-- BEGIN BLOG POSTS -->
+  <section class="home-blog-posts">
+    <h2 class="section-title">
+      <span>EMF News</span></h2>
+    <div class="home-blog-postList" data-slick='{
+      "slidesToShow": 1,
+      "slidesToScroll": 1,
+      "dots": false,
+      "infinite": false
+    }'>
+      {{#each blog.recent_posts}}
+        {{> components/custom/home/blog-post}}
+      {{/each}}
+    </div>
+  </section>
+  <!-- END BLOG POSTS -->
+  {{{region name="home_below_blog_posts"}}}
+  <!-- BEGIN UPPER FEATURED BANNERS -->
+  <!-- 1 COLUMN FEATURED CUSTOM BANNERS -->
+    {{#if theme_settings.upper_banner_column_number '===' 1}}
+      <div class="featured-categories-banner one-column upper-banners{{#if theme_settings.show_homepage_upper_featured_banners_1 '===' false}} banner-1 inactive {{/if}} {{#if theme_settings.show_homepage_upper_featured_banners_2 '===' false}} banner-2 inactive {{/if}}">
+        <!-- BEGIN UPPER FEATURED BANNER 1 -->
+        {{#if theme_settings.show_homepage_upper_featured_banners_1 '===' true}}
+          <ul class="featured-categories">
+            {{#if theme_settings.external_link1 '===' true}}
+              <!-- CATEGORY ONE -->
+                <li class="category one">
+                  <div class="category-link-container">
+                    <div class="zoom-image-container">
+                      <a target="_blank" class="category-image-link" href="{{theme_settings.featured_banner_link_1}}">
+                        {{#if theme_settings.show_homepage_upper_featured_banners_1_image '===' true}}
+                          <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_1}}" alt="{{theme_settings.featured_banner_name_1}}" title="{{theme_settings.featured_banner_name_1}}" />
+                        {{/if}}
+                        {{#if theme_settings.show_homepage_upper_featured_banners_1_text '===' true}}
+                          <div class="text-wrapper">
+                            <h1 class="featured-banner-title {{#if theme_settings.upper_banner_title_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_title_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_title_1}}</h1>
+                            <p class="featured-banner-text {{#if theme_settings.upper_banner_body_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_body_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_body_text_1}}</p>
+                            <p class="featured-banner-byline-text {{#if theme_settings.upper_banner_byline_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_byline_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_byline_text_1}}</p>
+                          </div>
+                        {{/if}}
+                      </a>
+                    </div>
+                  </div>
+                </li>
+            {{/if}} <!-- external link -->
+            {{#if theme_settings.external_link1 '===' false}}
+              <!-- CATEGORY ONE -->
+                <li class="category one">
+                  <div class="category-link-container">
+                    <div class="zoom-image-container">
+                      <a target="_self" class="category-image-link" href="/{{theme_settings.featured_banner_link_1}}">
+                        {{#if theme_settings.show_homepage_upper_featured_banners_1_image '===' true}}
+                          <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_1}}" alt="{{theme_settings.featured_banner_name_1}}" title="{{theme_settings.featured_banner_name_1}}" />
+                        {{/if}}
+                        {{#if theme_settings.show_homepage_upper_featured_banners_1_text '===' true}}
+                          <div class="text-wrapper">
+                            <h1 class="featured-banner-title {{#if theme_settings.upper_banner_title_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_title_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_title_1}}</h1>
+                            <p class="featured-banner-text {{#if theme_settings.upper_banner_body_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_body_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_body_text_1}}</p>
+                            <p class="featured-banner-byline-text {{#if theme_settings.upper_banner_byline_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_byline_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_byline_text_1}}</p>
+                          </div>
+                        {{/if}}
+                      </a>
+                    </div>
+                  </div>
+                </li>
+             {{/if}}  <!-- external link -->
+        {{/if}} <!-- activate banner 1 -->
+
+        <!-- BEGIN UPPER FEATURED BANNER 2 -->
+        {{#if theme_settings.show_homepage_upper_featured_banners_2 '===' true}}
+          {{#if theme_settings.external_link2 '===' true}}
+            <!-- CATEGORY TWO -->
+              <li class="category two">
+                <div class="category-link-container">
+                  <div class="zoom-image-container">
+                    <a target="_blank" class="category-image-link" href="{{theme_settings.featured_banner_link_2}}">
+                      {{#if theme_settings.show_homepage_upper_featured_banners_2_image '===' true}}
+                        <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_2}}" alt="{{theme_settings.featured_banner_name_2}}" title="{{theme_settings.featured_banner_name_2}}" />
+                      {{/if}}
+                      {{#if theme_settings.show_homepage_upper_featured_banners_2_text '===' true}}
+                        <div class="text-wrapper">
+                          <h1 class="featured-banner-title {{#if theme_settings.upper_banner_title_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_title_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_title_2}}</h1>
+                          <p class="featured-banner-text {{#if theme_settings.upper_banner_body_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_body_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_body_text_2}}</p>
+                          <p class="featured-banner-byline-text {{#if theme_settings.upper_banner_byline_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_byline_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_byline_text_2}}</p>
+                        </div>
+                      {{/if}}
+                    </a>
+                  </div>
+                </div>
+              </li>
+          {{/if}} <!-- external link true -->
+          {{#if theme_settings.external_link2 '===' false}}
+          <!-- CATEGORY TWO -->
+            <li class="category two">
+              <div class="category-link-container">
+                <div class="zoom-image-container">
+                  <a target="_self" class="category-image-link" href="/{{theme_settings.featured_banner_link_2}}">
+                    {{#if theme_settings.show_homepage_upper_featured_banners_2_image '===' true}}
+                      <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_2}}" alt="{{theme_settings.featured_banner_name_2}}" title="{{theme_settings.featured_banner_name_2}}" />
+                    {{/if}}
+                    {{#if theme_settings.show_homepage_upper_featured_banners_2_text '===' true}}
+                      <div class="text-wrapper">
+                        <h1 class="featured-banner-title {{#if theme_settings.upper_banner_title_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_title_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_title_2}}</h1>
+                        <p class="featured-banner-text {{#if theme_settings.upper_banner_body_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_body_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_body_text_2}}</p>
+                        <p class="featured-banner-byline-text {{#if theme_settings.upper_banner_byline_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_byline_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_byline_text_2}}</p>
+                      </div>
+                    {{/if}}
+                  </a>
+                </div>
+              </div>
+            </li>
+          {{/if}} <!-- external link false -->
+          <div class="clear"></div>
+        {{/if}} <!-- activate banner 2 -->
+        </ul>
+      </div> <!-- featured-categories-banner -->
+  {{/if}} <!-- 1 Column Banners -->
+  <!-- END 1 COLUMN FEATURED BANNERS -->
+
+  <!-- 2 COLUMN UPPER BANNERS -->
+    {{#if theme_settings.upper_banner_column_number '===' 2}}
+      <div class="featured-categories-banner two-columns upper-banners{{#if theme_settings.show_homepage_upper_featured_banners_1 '===' false}} banner-1 inactive {{/if}} {{#if theme_settings.show_homepage_upper_featured_banners_2 '===' false}} banner-2 inactive {{/if}}">
+        <!-- BEGIN UPPER FEATURED BANNER 1 -->
+        {{#if theme_settings.show_homepage_upper_featured_banners_1 '===' true}}
+          <ul class="featured-categories">
+            {{#if theme_settings.external_link1 '===' true}}
+              <!-- CATEGORY ONE -->
+                <li class="category one">
+                  <div class="category-link-container">
+                    <div class="zoom-image-container">
+                      <a target="_blank" class="category-image-link" href="{{theme_settings.featured_banner_link_1}}">
+                        {{#if theme_settings.show_homepage_upper_featured_banners_1_image '===' true}}
+                          <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_1}}" alt="{{theme_settings.featured_banner_name_1}}" title="{{theme_settings.featured_banner_name_1}}" />
+                        {{/if}}
+                        {{#if theme_settings.show_homepage_upper_featured_banners_1_text '===' true}}
+                          <div class="text-wrapper">
+                            <h1 class="featured-banner-title {{#if theme_settings.upper_banner_title_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_title_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_title_1}}</h1>
+                            <p class="featured-banner-text {{#if theme_settings.upper_banner_body_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_body_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_body_text_1}}</p>
+                            <p class="featured-banner-byline-text {{#if theme_settings.upper_banner_byline_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_byline_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_byline_text_1}}</p>
+                          </div>
+                        {{/if}}
+                        <div class="clear"></div>
+                      </a>
+                   </div>
+                  </div>
+                </li>
+            {{/if}} <!-- external link true -->
+            {{#if theme_settings.external_link1 '===' false}}
+              <!-- CATEGORY ONE -->
+                <li class="category one">
+                  <div class="category-link-container">
+                    <div class="zoom-image-container">
+                      <a target="_self" class="category-image-link" href="/{{theme_settings.featured_banner_link_1}}">
+                        {{#if theme_settings.show_homepage_upper_featured_banners_1_image '===' true}}
+                          <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_1}}" alt="{{theme_settings.featured_banner_name_1}}" title="{{theme_settings.featured_banner_name_1}}" />
+                        {{/if}}
+                        {{#if theme_settings.show_homepage_upper_featured_banners_1_text '===' true}}
+                          <div class="text-wrapper">
+                            <h1 class="featured-banner-title {{#if theme_settings.upper_banner_title_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_title_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_title_1}}</h1>
+                            <p class="featured-banner-text {{#if theme_settings.upper_banner_body_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_body_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_body_text_1}}</p>
+                            <p class="featured-banner-byline-text {{#if theme_settings.upper_banner_byline_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_byline_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_byline_text_1}}</p>
+                          </div>
+                        {{/if}}
+                      </a>
+                  </div>
+                </div>
+                </li>
+            {{/if}}  <!-- external link false -->
+        {{/if}} <!-- activate banner 1 -->
+
+        <!-- BEGIN UPPER FEATURED BANNER 2 -->
+          {{#if theme_settings.show_homepage_upper_featured_banners_2 '===' true}}
+            {{#if theme_settings.external_link2 '===' true}}
+            <!-- CATEGORY TWO -->
+              <li class="category two">
+                <div class="category-link-container">
+                  <div class="zoom-image-container">
+                    <a target="_blank" class="category-image-link" href="{{theme_settings.featured_banner_link_2}}">
+                      {{#if theme_settings.show_homepage_upper_featured_banners_2_image '===' true}}
+                        <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_2}}" alt="{{theme_settings.featured_banner_name_2}}" title="{{theme_settings.featured_banner_name_2}}" />
+                      {{/if}}
+                      {{#if theme_settings.show_homepage_upper_featured_banners_2_text '===' true}}
+                        <div class="text-wrapper">
+                          <h1 class="featured-banner-title {{#if theme_settings.upper_banner_title_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_title_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_title_2}}</h1>
+                          <p class="featured-banner-text {{#if theme_settings.upper_banner_body_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_body_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_body_text_2}}</p>
+                          <p class="featured-banner-byline-text {{#if theme_settings.upper_banner_byline_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_byline_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_byline_text_2}}</p>
+                        </div>
+                      {{/if}}
+                    </a>
+                  </div>
+                </div>
+              </li>
+            {{/if}} <!-- external link true -->
+            {{#if theme_settings.external_link2 '===' false}}
+              <!-- CATEGORY TWO -->
+                <li class="category two">
+                  <div class="category-link-container">
+                    <div class="zoom-image-container">
+                      <a target="_self" class="category-image-link" href="/{{theme_settings.featured_banner_link_2}}">
+                        {{#if theme_settings.show_homepage_upper_featured_banners_2_image '===' true}}
+                          <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_2}}" alt="{{theme_settings.featured_banner_name_2}}" title="{{theme_settings.featured_banner_name_2}}" />
+                        {{/if}}
+                        {{#if theme_settings.show_homepage_upper_featured_banners_2_text '===' true}}
+                          <div class="text-wrapper">
+                            <h1 class="featured-banner-title {{#if theme_settings.upper_banner_title_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_title_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_title_2}}</h1>
+                            <p class="featured-banner-text {{#if theme_settings.upper_banner_body_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_body_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_body_text_2}}</p>
+                            <p class="featured-banner-byline-text {{#if theme_settings.upper_banner_byline_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.upper_banner_byline_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.upper_banner_byline_text_2}}</p>
+                          </div>
+                        {{/if}}
+                      </a>
+                   </div>
+                 </div>
+               </li>
+           {{/if}} <!-- external link false -->
+          <div class="clear"></div>
+          {{/if}} <!-- activate banner 2 -->
+        </ul>
+    </div> <!-- featured-categories-banner -->
+  {{/if}} <!-- 2 Column Banners -->
+  <!-- END 2 COLUMN FEATURED BANNERS -->
+  <!-- END UPPER FEATURED CUSTOM BANNERS -->
+
+
+  <!-- FEATURED PRODUCTS SECTION -->
+    {{#if products.featured}}
+        {{> components/products/featured products=products.featured columns=theme_settings.homepage_featured_products_column_count}}
+    {{/if}}
+    {{{region name="home_below_featured_products"}}}
+
+
+    <!-- BEGIN MID FEATURED BANNERS -->
+    <!-- 1 COLUMN FEATURED CUSTOM BANNERS -->
+      {{#if theme_settings.mid_banner_column_number '===' 1}}
+        <div class="featured-categories-banner one-column mid-banners{{#if theme_settings.show_homepage_mid_featured_banners_1 '===' false}} banner-1 inactive {{/if}} {{#if theme_settings.show_homepage_mid_featured_banners_2 '===' false}} banner-2 inactive {{/if}}">
+          <!-- BEGIN UPPER FEATURED BANNER 3 -->
+          {{#if theme_settings.show_homepage_mid_featured_banners_1 '===' true}}
+            <ul class="featured-categories">
+              {{#if theme_settings.external_link3 '===' true}}
+                <!-- CATEGORY THREE -->
+                  <li class="category one">
+                    <div class="category-link-container">
+                      <div class="zoom-image-container">
+                        <a target="_blank" class="category-image-link" href="{{theme_settings.featured_banner_link_3}}">
+                          {{#if theme_settings.show_homepage_mid_featured_banners_1_image '===' true}}
+                            <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_3}}" alt="{{theme_settings.featured_banner_name_3}}" title="{{theme_settings.featured_banner_name_3}}" />
+                          {{/if}}
+                          {{#if theme_settings.show_homepage_mid_featured_banners_1_text '===' true}}
+                            <div class="text-wrapper">
+                              <h1 class="featured-banner-title {{#if theme_settings.mid_banner_title_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_title_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_title_1}}</h1>
+                              <p class="featured-banner-text {{#if theme_settings.mid_banner_body_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_body_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_body_text_1}}</p>
+                              <p class="featured-banner-byline-text {{#if theme_settings.mid_banner_byline_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_byline_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_byline_text_1}}</p>
+                            </div>
+                          {{/if}}
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+              {{/if}} <!-- external link -->
+              {{#if theme_settings.external_link3 '===' false}}
+                <!-- CATEGORY THREE -->
+                  <li class="category one">
+                    <div class="category-link-container">
+                      <div class="zoom-image-container">
+                        <a target="_self" class="category-image-link" href="/{{theme_settings.featured_banner_link_3}}">
+                          {{#if theme_settings.show_homepage_mid_featured_banners_1_image '===' true}}
+                            <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_3}}" alt="{{theme_settings.featured_banner_name_3}}" title="{{theme_settings.featured_banner_name_3}}" />
+                          {{/if}}
+                          {{#if theme_settings.show_homepage_mid_featured_banners_1_text '===' true}}
+                            <div class="text-wrapper">
+                              <h1 class="featured-banner-title {{#if theme_settings.mid_banner_title_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_title_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_title_1}}</h1>
+                              <p class="featured-banner-text {{#if theme_settings.mid_banner_body_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_body_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_body_text_1}}</p>
+                              <p class="featured-banner-byline-text {{#if theme_settings.mid_banner_byline_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_byline_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_byline_text_1}}</p>
+                            </div>
+                          {{/if}}
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+               {{/if}}  <!-- external link -->
+          {{/if}} <!-- activate banner 3 -->
+
+          <!-- BEGIN MID FEATURED BANNER 4 -->
+          {{#if theme_settings.show_homepage_mid_featured_banners_2 '===' true}}
+            {{#if theme_settings.external_link4 '===' true}}
+              <!-- CATEGORY FOUR -->
+                <li class="category two">
+                  <div class="category-link-container">
+                    <div class="zoom-image-container">
+                      <a target="_blank" class="category-image-link" href="{{theme_settings.featured_banner_link_4}}">
+                        {{#if theme_settings.show_homepage_mid_featured_banners_2_image '===' true}}
+                          <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_4}}" alt="{{theme_settings.featured_banner_name_4}}" title="{{theme_settings.featured_banner_name_4}}" />
+                        {{/if}}
+                        {{#if theme_settings.show_homepage_mid_featured_banners_2_text '===' true}}
+                          <div class="text-wrapper">
+                            <h1 class="featured-banner-title {{#if theme_settings.mid_banner_title_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_title_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_title_2}}</h1>
+                            <p class="featured-banner-text {{#if theme_settings.mid_banner_body_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_body_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_body_text_2}}</p>
+                            <p class="featured-banner-byline-text {{#if theme_settings.mid_banner_byline_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_byline_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_byline_text_2}}</p>
+                          </div>
+                        {{/if}}
+                      </a>
+                    </div>
+                  </div>
+                </li>
+            {{/if}} <!-- external link true -->
+            {{#if theme_settings.external_link4 '===' false}}
+            <!-- CATEGORY FOUR -->
+              <li class="category two">
+                <div class="category-link-container">
+                  <div class="zoom-image-container">
+                    <a target="_self" class="category-image-link" href="/{{theme_settings.featured_banner_link_4}}">
+                      {{#if theme_settings.show_homepage_mid_featured_banners_2_image '===' true}}
+                        <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_4}}" alt="{{theme_settings.featured_banner_name_4}}" title="{{theme_settings.featured_banner_name_4}}" />
+                      {{/if}}
+                      {{#if theme_settings.show_homepage_mid_featured_banners_2_text '===' true}}
+                        <div class="text-wrapper">
+                          <h1 class="featured-banner-title {{#if theme_settings.mid_banner_title_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_title_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_title_2}}</h1>
+                          <p class="featured-banner-text {{#if theme_settings.mid_banner_body_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_body_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_body_text_2}}</p>
+                          <p class="featured-banner-byline-text {{#if theme_settings.mid_banner_byline_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_byline_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_byline_text_2}}</p>
+                        </div>
+                      {{/if}}
+                    </a>
+                  </div>
+                </div>
+              </li>
+            {{/if}} <!-- external link false -->
+            <div class="clear"></div>
+          {{/if}} <!-- activate banner 4 -->
+          </ul>
+        </div> <!-- featured-categories-banner -->
+    {{/if}} <!-- 1 Column Banners -->
+    <!-- END 1 COLUMN FEATURED BANNERS -->
+
+    <!-- 2 COLUMN MID BANNERS -->
+      {{#if theme_settings.mid_banner_column_number '===' 2}}
+        <div class="featured-categories-banner two-columns mid-banners{{#if theme_settings.show_homepage_mid_featured_banners_1 '===' false}} banner-1 inactive {{/if}} {{#if theme_settings.show_homepage_mid_featured_banners_2 '===' false}} banner-2 inactive {{/if}}">
+          <!-- BEGIN MID FEATURED BANNER 1 -->
+          {{#if theme_settings.show_homepage_mid_featured_banners_1 '===' true}}
+            <ul class="featured-categories">
+              {{#if theme_settings.external_link3 '===' true}}
+                <!-- CATEGORY THREE -->
+                  <li class="category one">
+                    <div class="category-link-container">
+                      <div class="zoom-image-container">
+                        <a target="_blank" class="category-image-link" href="{{theme_settings.featured_banner_link_3}}">
+                          {{#if theme_settings.show_homepage_mid_featured_banners_1_image '===' true}}
+                            <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_3}}" alt="{{theme_settings.featured_banner_name_3}}" title="{{theme_settings.featured_banner_name_3}}" />
+                          {{/if}}
+                          {{#if theme_settings.show_homepage_mid_featured_banners_1_text '===' true}}
+                            <div class="text-wrapper">
+                              <h1 class="featured-banner-title {{#if theme_settings.mid_banner_title_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_title_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_title_1}}</h1>
+                              <p class="featured-banner-text {{#if theme_settings.mid_banner_body_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_body_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_body_text_1}}</p>
+                              <p class="featured-banner-byline-text {{#if theme_settings.mid_banner_byline_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_byline_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_byline_text_1}}</p>
+                            </div>
+                          {{/if}}
+                          <div class="clear"></div>
+                        </a>
+                     </div>
+                    </div>
+                  </li>
+              {{/if}} <!-- external link true -->
+              {{#if theme_settings.external_link3 '===' false}}
+                <!-- CATEGORY THREE -->
+                  <li class="category one">
+                    <div class="category-link-container">
+                      <div class="zoom-image-container">
+                        <a target="_self" class="category-image-link" href="/{{theme_settings.featured_banner_link_3}}">
+                          {{#if theme_settings.show_homepage_mid_featured_banners_1_image '===' true}}
+                            <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_3}}" alt="{{theme_settings.featured_banner_name_3}}" title="{{theme_settings.featured_banner_name_3}}" />
+                          {{/if}}
+                          {{#if theme_settings.show_homepage_mid_featured_banners_1_text '===' true}}
+                            <div class="text-wrapper">
+                              <h1 class="featured-banner-title {{#if theme_settings.mid_banner_title_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_title_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_title_1}}</h1>
+                              <p class="featured-banner-text {{#if theme_settings.mid_banner_body_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_body_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_body_text_1}}</p>
+                              <p class="featured-banner-byline-text {{#if theme_settings.mid_banner_byline_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_byline_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_byline_text_1}}</p>
+                            </div>
+                          {{/if}}
+                        </a>
+                    </div>
+                  </div>
+                  </li>
+              {{/if}}  <!-- external link false -->
+          {{/if}} <!-- activate banner 1 -->
+
+          <!-- BEGIN MID FEATURED BANNER 2 -->
+            {{#if theme_settings.show_homepage_mid_featured_banners_2 '===' true}}
+              {{#if theme_settings.external_link4 '===' true}}
+              <!-- CATEGORY FOUR -->
+                <li class="category two">
+                  <div class="category-link-container">
+                    <div class="zoom-image-container">
+                      <a target="_blank" class="category-image-link" href="{{theme_settings.featured_banner_link_4}}">
+                        {{#if theme_settings.show_homepage_mid_featured_banners_2_image '===' true}}
+                          <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_4}}" alt="{{theme_settings.featured_banner_name_4}}" title="{{theme_settings.featured_banner_name_4}}" />
+                        {{/if}}
+                        {{#if theme_settings.show_homepage_mid_featured_banners_2_text '===' true}}
+                          <div class="text-wrapper">
+                            <h1 class="featured-banner-title {{#if theme_settings.mid_banner_title_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_title_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_title_2}}</h1>
+                            <p class="featured-banner-text {{#if theme_settings.mid_banner_body_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_body_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_body_text_2}}</p>
+                            <p class="featured-banner-byline-text {{#if theme_settings.mid_banner_byline_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_byline_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_byline_text_2}}</p>
+                          </div>
+                        {{/if}}
+                      </a>
+                    </div>
+                  </div>
+                </li>
+              {{/if}} <!-- external link true -->
+              {{#if theme_settings.external_link4 '===' false}}
+                <!-- CATEGORY TWO -->
+                  <li class="category two">
+                    <div class="category-link-container">
+                      <div class="zoom-image-container">
+                        <a target="_self" class="category-image-link" href="/{{theme_settings.featured_banner_link_4}}">
+                          {{#if theme_settings.show_homepage_mid_featured_banners_2_image '===' true}}
+                            <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_4}}" alt="{{theme_settings.featured_banner_name_4}}" title="{{theme_settings.featured_banner_name_4}}" />
+                          {{/if}}
+                          {{#if theme_settings.show_homepage_mid_featured_banners_2_text '===' true}}
+                            <div class="text-wrapper">
+                              <h1 class="featured-banner-title {{#if theme_settings.mid_banner_title_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_title_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_title_2}}</h1>
+                              <p class="featured-banner-text {{#if theme_settings.mid_banner_body_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_body_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_body_text_2}}</p>
+                              <p class="featured-banner-byline-text {{#if theme_settings.mid_banner_byline_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.mid_banner_byline_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.mid_banner_byline_text_2}}</p>
+                            </div>
+                          {{/if}}
+                        </a>
+                     </div>
+                   </div>
+                 </li>
+             {{/if}} <!-- external link false -->
+            <div class="clear"></div>
+            {{/if}} <!-- activate banner 2 -->
+          </ul>
+      </div> <!-- featured-categories-banner -->
+    {{/if}} <!-- 2 Column Banners -->
+    <!-- END 2 COLUMN FEATURED BANNERS -->
+    <!-- END UPPER FEATURED CUSTOM BANNERS -->
+
+
+  <!-- TOP SELLERS SECTION -->
+    {{#if products.top_sellers}}
+        {{> components/products/top products=products.top_sellers columns=theme_settings.homepage_top_products_column_count}}
+    {{/if}}
+    {{{region name="home_below_top_products"}}}
+
+
+    <!-- BEGIN LOWER FEATURED BANNERS -->
+    <!-- 1 COLUMN FEATURED CUSTOM BANNERS -->
+      {{#if theme_settings.lower_banner_column_number '===' 1}}
+        <div class="featured-categories-banner one-column lower-banners{{#if theme_settings.show_homepage_lower_featured_banners_1 '===' false}} banner-1 inactive {{/if}} {{#if theme_settings.show_homepage_lower_featured_banners_2 '===' false}} banner-2 inactive {{/if}}">
+          <!-- BEGIN LOWER FEATURED BANNER 1 -->
+          {{#if theme_settings.show_homepage_lower_featured_banners_1 '===' true}}
+            <ul class="featured-categories">
+              {{#if theme_settings.external_link5 '===' true}}
+                <!-- CATEGORY FIVE -->
+                  <li class="category one">
+                    <div class="category-link-container">
+                      <div class="zoom-image-container">
+                        <a target="_blank" class="category-image-link" href="{{theme_settings.featured_banner_link_5}}">
+                          {{#if theme_settings.show_homepage_lower_featured_banners_1_image '===' true}}
+                            <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_5}}" alt="{{theme_settings.featured_banner_name_5}}" title="{{theme_settings.featured_banner_name_5}}" />
+                          {{/if}}
+                          {{#if theme_settings.show_homepage_lower_featured_banners_1_text '===' true}}
+                            <div class="text-wrapper">
+                              <h1 class="featured-banner-title {{#if theme_settings.lower_banner_title_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_title_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_title_1}}</h1>
+                              <p class="featured-banner-text {{#if theme_settings.lower_banner_body_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_body_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_body_text_1}}</p>
+                              <p class="featured-banner-byline-text {{#if theme_settings.lower_banner_byline_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_byline_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_byline_text_1}}</p>
+                            </div>
+                          {{/if}}
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+              {{/if}} <!-- external link true -->
+              {{#if theme_settings.external_link5 '===' false}}
+                <!-- CATEGORY FIVE -->
+                  <li class="category one">
+                    <div class="category-link-container">
+                      <div class="zoom-image-container">
+                        <a target="_self" class="category-image-link" href="/{{theme_settings.featured_banner_link_5}}">
+                          {{#if theme_settings.show_homepage_lower_featured_banners_1_image '===' true}}
+                            <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_5}}" alt="{{theme_settings.featured_banner_name_5}}" title="{{theme_settings.featured_banner_name_5}}" />
+                          {{/if}}
+                          {{#if theme_settings.show_homepage_lower_featured_banners_1_text '===' true}}
+                            <div class="text-wrapper">
+                              <h1 class="featured-banner-title {{#if theme_settings.lower_banner_title_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_title_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_title_1}}</h1>
+                              <p class="featured-banner-text {{#if theme_settings.lower_banner_body_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_body_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_body_text_1}}</p>
+                              <p class="featured-banner-byline-text {{#if theme_settings.lower_banner_byline_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_byline_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_byline_text_1}}</p>
+                            </div>
+                          {{/if}}
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+               {{/if}}  <!-- external link false -->
+          {{/if}} <!-- activate banner 5 -->
+
+          <!-- BEGIN LOWER FEATURED BANNER 2 -->
+          {{#if theme_settings.show_homepage_lower_featured_banners_2 '===' true}}
+            {{#if theme_settings.external_link6 '===' true}}
+              <!-- CATEGORY SIX -->
+                <li class="category two">
+                  <div class="category-link-container">
+                    <div class="zoom-image-container">
+                      <a target="_blank" class="category-image-link" href="{{theme_settings.featured_banner_link_6}}">
+                        {{#if theme_settings.show_homepage_lower_featured_banners_2_image '===' true}}
+                          <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_6}}" alt="{{theme_settings.featured_banner_name_6}}" title="{{theme_settings.featured_banner_name_6}}" />
+                        {{/if}}
+                        {{#if theme_settings.show_homepage_lower_featured_banners_2_text '===' true}}
+                          <div class="text-wrapper">
+                            <h1 class="featured-banner-title {{#if theme_settings.lower_banner_title_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_title_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_title_2}}</h1>
+                            <p class="featured-banner-text {{#if theme_settings.lower_banner_body_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_body_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_body_text_2}}</p>
+                            <p class="featured-banner-byline-text {{#if theme_settings.lower_banner_byline_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_byline_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_byline_text_2}}</p>
+                          </div>
+                        {{/if}}
+                      </a>
+                    </div>
+                  </div>
+                </li>
+            {{/if}} <!-- external link true -->
+            {{#if theme_settings.external_link6 '===' false}}
+            <!-- CATEGORY SIX -->
+              <li class="category two">
+                <div class="category-link-container">
+                  <div class="zoom-image-container">
+                    <a target="_self" class="category-image-link" href="/{{theme_settings.featured_banner_link_6}}">
+                      {{#if theme_settings.show_homepage_lower_featured_banners_2_image '===' true}}
+                        <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_6}}" alt="{{theme_settings.featured_banner_name_6}}" title="{{theme_settings.featured_banner_name_6}}" />
+                      {{/if}}
+                      {{#if theme_settings.show_homepage_lower_featured_banners_2_text '===' true}}
+                        <div class="text-wrapper">
+                          <h1 class="featured-banner-title {{#if theme_settings.lower_banner_title_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_title_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_title_2}}</h1>
+                          <p class="featured-banner-text {{#if theme_settings.lower_banner_body_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_body_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_body_text_2}}</p>
+                          <p class="featured-banner-byline-text {{#if theme_settings.lower_banner_byline_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_byline_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_byline_text_2}}</p>
+                        </div>
+                      {{/if}}
+                    </a>
+                  </div>
+                </div>
+              </li>
+            {{/if}} <!-- external link false -->
+            <div class="clear"></div>
+          {{/if}} <!-- activate banner 6 -->
+          </ul>
+        </div> <!-- featured-categories-banner lower-banners -->
+    {{/if}} <!-- 1 Column Banners -->
+    <!-- END 1 COLUMN FEATURED BANNERS -->
+
+    <!-- 2 COLUMN LOWER BANNERS -->
+      {{#if theme_settings.lower_banner_column_number '===' 2}}
+        <div class="featured-categories-banner two-columns lower-banners{{#if theme_settings.show_homepage_lower_featured_banners_1 '===' false}} banner-1 inactive {{/if}} {{#if theme_settings.show_homepage_lower_featured_banners_2 '===' false}} banner-2 inactive {{/if}}">
+          <!-- BEGIN LOWER FEATURED BANNER 5 -->
+          {{#if theme_settings.show_homepage_lower_featured_banners_1 '===' true}}
+            <ul class="featured-categories">
+              {{#if theme_settings.external_link5 '===' true}}
+                <!-- CATEGORY FIVE -->
+                  <li class="category one">
+                    <div class="category-link-container">
+                      <div class="zoom-image-container">
+                        <a target="_blank" class="category-image-link" href="{{theme_settings.featured_banner_link_5}}">
+                          {{#if theme_settings.show_homepage_lower_featured_banners_1_image '===' true}}
+                            <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_5}}" alt="{{theme_settings.featured_banner_name_5}}" title="{{theme_settings.featured_banner_name_5}}" />
+                          {{/if}}
+                          {{#if theme_settings.show_homepage_lower_featured_banners_1_text '===' true}}
+                            <div class="text-wrapper">
+                              <h1 class="featured-banner-title {{#if theme_settings.lower_banner_title_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_title_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_title_1}}</h1>
+                              <p class="featured-banner-text {{#if theme_settings.lower_banner_body_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_body_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_body_text_1}}</p>
+                              <p class="featured-banner-byline-text {{#if theme_settings.lower_banner_byline_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_byline_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_byline_text_1}}</p>
+                            </div>
+                          {{/if}}
+                          <div class="clear"></div>
+                        </a>
+                     </div>
+                    </div>
+                  </li>
+              {{/if}} <!-- external link true -->
+              {{#if theme_settings.external_link5 '===' false}}
+                <!-- CATEGORY FIVE -->
+                  <li class="category one">
+                    <div class="category-link-container">
+                      <div class="zoom-image-container">
+                        <a target="_self" class="category-image-link" href="/{{theme_settings.featured_banner_link_5}}">
+                          {{#if theme_settings.show_homepage_lower_featured_banners_1_image '===' true}}
+                            <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_5}}" alt="{{theme_settings.featured_banner_name_5}}" title="{{theme_settings.featured_banner_name_5}}" />
+                          {{/if}}
+                          {{#if theme_settings.show_homepage_lower_featured_banners_1_text '===' true}}
+                            <div class="text-wrapper">
+                              <h1 class="featured-banner-title {{#if theme_settings.lower_banner_title_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_title_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_title_1}}</h1>
+                              <p class="featured-banner-text {{#if theme_settings.lower_banner_body_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_body_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_body_text_1}}</p>
+                              <p class="featured-banner-byline-text {{#if theme_settings.lower_banner_byline_text_1_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_byline_text_1_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_byline_text_1}}</p>
+                            </div>
+                          {{/if}}
+                        </a>
+                    </div>
+                  </div>
+                  </li>
+              {{/if}}  <!-- external link false -->
+          {{/if}} <!-- activate banner 1 -->
+
+          <!-- BEGIN LOWER FEATURED BANNER 2 -->
+            {{#if theme_settings.show_homepage_lower_featured_banners_2 '===' true}}
+              {{#if theme_settings.external_link6 '===' true}}
+              <!-- CATEGORY SIX -->
+                <li class="category two">
+                  <div class="category-link-container">
+                    <div class="zoom-image-container">
+                      <a target="_blank" class="category-image-link" href="{{theme_settings.featured_banner_link_6}}">
+                        {{#if theme_settings.show_homepage_lower_featured_banners_2_image '===' true}}
+                          <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_6}}" alt="{{theme_settings.featured_banner_name_6}}" title="{{theme_settings.featured_banner_name_6}}" />
+                        {{/if}}
+                        {{#if theme_settings.show_homepage_lower_featured_banners_2_text '===' true}}
+                          <div class="text-wrapper">
+                            <h1 class="featured-banner-title {{#if theme_settings.lower_banner_title_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_title_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_title_2}}</h1>
+                            <p class="featured-banner-text {{#if theme_settings.lower_banner_body_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_body_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_body_text_2}}</p>
+                            <p class="featured-banner-byline-text {{#if theme_settings.lower_banner_byline_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_byline_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_byline_text_2}}</p>
+                          </div>
+                        {{/if}}
+                      </a>
+                    </div>
+                  </div>
+                </li>
+              {{/if}} <!-- external link true -->
+              {{#if theme_settings.external_link6 '===' false}}
+                <!-- CATEGORY SIX -->
+                  <li class="category two">
+                    <div class="category-link-container">
+                      <div class="zoom-image-container">
+                        <a target="_self" class="category-image-link" href="/{{theme_settings.featured_banner_link_6}}">
+                          {{#if theme_settings.show_homepage_lower_featured_banners_2_image '===' true}}
+                            <img class="category-image" src="../product_images/uploaded_images/{{theme_settings.featured_banner_image_6}}" alt="{{theme_settings.featured_banner_name_6}}" title="{{theme_settings.featured_banner_name_6}}" />
+                          {{/if}}
+                          {{#if theme_settings.show_homepage_lower_featured_banners_2_text '===' true}}
+                            <div class="text-wrapper">
+                              <h1 class="featured-banner-title {{#if theme_settings.lower_banner_title_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_title_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_title_2}}</h1>
+                              <p class="featured-banner-text {{#if theme_settings.lower_banner_body_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_body_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_body_text_2}}</p>
+                              <p class="featured-banner-byline-text {{#if theme_settings.lower_banner_byline_text_2_alignment '===' 'center-aligned'}}center-aligned{{/if}} {{#if theme_settings.lower_banner_byline_text_2_alignment '===' 'right-aligned'}}right-aligned{{/if}}">{{theme_settings.lower_banner_byline_text_2}}</p>
+                            </div>
+                          {{/if}}
+                        </a>
+                     </div>
+                   </div>
+                 </li>
+             {{/if}} <!-- external link false -->
+            <div class="clear"></div>
+            {{/if}} <!-- activate banner 2 -->
+          </ul>
+      </div> <!-- featured-categories-banner -->
+    {{/if}} <!-- 2 Column Banners -->
+    <!-- END 2 COLUMN FEATURED BANNERS -->
+    <!-- END LOWER FEATURED CUSTOM BANNERS -->
+
+
+  <!-- NEW PRODUCTS SECTION -->
+    {{#if products.new}}
+        {{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}
+    {{/if}}
+    {{{region name="home_below_new_products"}}}
+  <!-- END NEW PRODUCTS SECTION -->
+</div>
+{{/partial}}
+{{> layout/home}}

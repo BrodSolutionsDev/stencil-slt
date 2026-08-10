@@ -1,0 +1,67 @@
+{{#each categories}}
+	{{#if id '==' ../category_id}}
+		{{#if (merge ../../this 
+			category_name = name
+			category_url = url)}}
+		{{/if}}
+	{{else}}
+		{{#each children}}
+			{{#if id '==' ../../../category_id}}
+				{{#if (merge ../../../../this
+					category_name = name
+					category_url = url)}}
+				{{/if}}
+			{{/if}}
+		{{/each}}
+	{{/if}}
+{{/each}}
+
+
+<div class="productSlider productSlider-full">
+	{{#if category_url}}
+		<div class="productSlider-container">
+			<div class="productSlider-header">
+				<div class="productSlider-header--wrapper">
+					<h3 class="productSlider-title"><a href="{{category_url}}" title="{{category_name}}">{{category_name}}</a></h3>
+				</div>
+				<ul class="productSlider-header--categories">
+					{{#each categories}}
+						
+						{{#if id '==' ../category_id}}
+							{{#each (limit children ../../../limit_subcategory) }}
+								<li class="tab"><a class="tab-title" href="{{url}}">{{name}}</a></li>
+							{{/each}}
+						{{else}}
+							{{#each children}}
+								{{#if id '==' ../../../category_id}}
+								{{#each (limit children ../../../limit_subcategory) }}
+								<li class="tab"><a class="tab-title" href="{{url}}">{{name}}</a></li>
+								{{/each}}
+								{{/if}}
+							{{/each}}
+						{{/if}}
+					{{/each}}
+					<li class="tab view-all"><a class="tab-title" href="{{category_url}}"><i class="fa fa-caret-right"></i> View All</a></li>
+				</ul>
+			</div>
+			<div class="productSlider-content-wrapper">
+				<div class="productSlider-content" 
+					data-products-by-category-tabs="{{category_url}}?sort={{sort_order}}" 
+					data-urltemplate="custom/home/slider/product-slider-full-content">
+					<div class="productLoading" >
+						<img class="img-responsive lazyload" src="{{cdn '/assets/img/loading.svg'}}" alt="loading" width="50" height="50" >
+					</div>
+				</div>
+			</div>
+		</div>
+	{{else}}
+		<div class="alert alert-info" role="alert"  style="margin:0 0 30px">
+			<i class="fa fa-info-circle"></i> 
+		   No category
+		</div>
+	{{/if}}
+</div>
+
+
+
+

@@ -1,0 +1,50 @@
+---
+blog:
+    posts:
+        limit: 6
+        pages: 3
+        summary: 200
+---
+{{#partial "page"}}
+
+<main class="page blog">
+  {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    <div class="sidebar-section">
+    <button class="sidebar-button" id="sidebar-button">
+        <i class="fa fa-bars"></i>
+         sidebar 
+    </button>
+</div>
+    <div class="page-content">
+        <aside class="page-sidebar">
+            <span id="close-sidebar" class=" fa fa-times"></span>
+            {{> components/custom/blog/sidebar hide_shop=1}}
+        </aside>
+    {{!-- <h1 class="page-heading">{{ blog.name }}</h1> --}}
+    <div class="blog-container">
+        {{#each blog.posts}}
+            {{> components/blog/post-page post=this}}
+        {{/each}}
+    </div>
+    <div class="clear"></div>
+
+    {{> components/common/paginator pagination.blog}}
+    </div>
+</main>
+
+{{/partial}}
+{{> layout/base}}
+
+<script>
+    (function() {
+        const openSidebarButton = document.getElementById("sidebar-button");
+        const closeSidebarButton = document.getElementById("close-sidebar");
+        const sidebar = document.querySelector(".page-sidebar");
+        openSidebarButton.addEventListener("click", () => {
+            sidebar.classList.add('open');
+        });
+        closeSidebarButton.addEventListener("click", () => {
+            sidebar.classList.remove('open');
+        });
+    })();
+</script>

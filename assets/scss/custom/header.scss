@@ -1,0 +1,1117 @@
+// header-2.scss
+// Variant of the custom header with desktop breakpoint at $screen-medium (1201px)
+// instead of $screen-large (1261px). Scoped to .header-2 to avoid affecting the
+// original header. Mobile/tablet base styles come from header.scss globally.
+
+.navPages-container {
+	display: flex;
+}
+
+.banners {
+	.banner {
+		h2 {
+			margin: 0;
+			font-size: 14px;
+			color: #ffffff;
+			text-transform: uppercase;
+		}
+	}
+
+	
+}
+
+#filterAjaxSearchContainer {
+	z-index: 999999 !important;
+}
+
+@media (max-width: $screen-medium) {
+	[data-banner-location="top"] {
+		display: none;
+	}
+}
+@media only screen and (min-width: $screen-medium) {
+	// Header-top: show search bar, phone, and spread layout at 1201px
+	.header {
+		.header-top--search {
+			display: block;
+		}
+
+		.header-top--inner {
+			justify-content: space-between;
+		}
+
+		.header-top--phone {
+			display: flex;
+		}
+
+		// Mega menu toggle button
+		.mega-menu-icon.open {
+			margin-left: 1rem;
+		}
+
+		.burger-menu {
+			margin-left: 0.5rem;
+		}
+
+		#menu-wrapper {
+			position: relative;
+		z-index: -1;
+		}
+
+		// Mega menu second-level items: three columns
+		.mega-cat-dropdown li.navPage-subMenu-item-child.second-level {
+			width: 33% !important;
+		}
+
+		// Mega menu category link font size
+		.desktop .mega-cat-dropdown li.navPages-item a.navPages-action {
+			font-size: $sixteen-px !important;
+		}
+
+		// Second-level flyout: constrain width to prevent viewport overflow
+		.mega-cat-dropdown
+			.has-subMenu.is-root
+			+ .navPage-subMenu-horizontal.second-level-flyout {
+			// width: min(872px, calc(100vw - 298px - 1rem)) !important;
+			max-width: calc(100vw - 298px - 1rem);
+			left: 298px !important;
+			overflow: hidden;
+		}
+
+		// Nav item image padding
+		#menu .navPages-action img {
+			padding-right: 0.25rem;
+		}
+
+		// Sub-menu item font size
+		#menu .navPages-list .navPage-subMenu-item a.navPages-action {
+			font-size: $sixteen-px !important;
+		}
+
+		// Top-level page nav: unset mobile overrides + flex layout
+		#menu .navPages-list.nav-page-list .navPages-action {
+			font-weight: 400;
+			text-transform: unset;
+			display: flex;
+			align-items: center;
+			gap: 0.25rem;
+		}
+
+		// Right nav row: flex layout
+		#menu .nav-page-list.two {
+			display: flex !important;
+			align-items: center;
+		}
+
+		// Chevron icon sizing
+		.navPages-action .chevron-down {
+			height: 0.57143rem;
+			width: 0.57143rem;
+		}
+
+		// Nav action horizontal padding
+		.navPages-action {
+			padding-left: 0.75rem;
+			padding-right: 0.75rem;
+		}
+
+		// Sub-menu desktop layout
+		.navPage-subMenu {
+			border: 1px solid stencilColor('main-nav-backgroundColor');
+			border-top: 0;
+			
+			.desktop {
+				display: flex;
+				align-items: flex-start;
+				justify-content: start;
+
+				.navPage-subMenu-list {
+					margin: 0;
+				}
+
+				.navPage-subMenu-product {
+					a {
+						font-size: $sixteen-px;
+						text-align: center;
+						margin: 0 auto;
+						text-transform: capitalize;
+					}
+				}
+			}
+		}
+
+		// Sub-menu width: size to content
+		#menu {
+			.navPages-list {
+				.navPage-subMenu {
+					width: max-content !important;
+				}
+			}
+		}
+
+		// Reset transitions on mega cat nav toggle button
+		.mega-cat-nav
+			li.navPages-item.navPages-item-page.container-header.btn.active
+			a,
+		.mega-cat-nav
+			li.navPages-item.navPages-item-page.container-header.btn.active
+			a
+			span.burger-menu,
+		.mega-cat-nav
+			li.navPages-item.navPages-item-page.container-header.btn
+			a
+			span.burger-menu,
+		#menu
+			li.navPages-item.navPages-item-page.container-header.btn.active
+			a.navPages-action {
+			transition: none !important;
+			-webkit-transition: none !important;
+			-moz-transition: none !important;
+			-o-transition: none !important;
+			-ms-transition: none !important;
+		}
+	}
+}
+
+@media only screen and (max-width: $screen-medium) {
+	.header-top {
+		height: unset;
+	}
+}
+
+.mobile-search {
+	position: fixed;
+	top: 100px;
+	background: #ffffff;
+	display: none;
+	width: calc(100% - 2px);
+	z-index: 20;
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+	.header-top--search {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+
+		.search-info-content {
+			flex: 1;
+		}
+
+		.header-top--closeSearch {
+			svg {
+				width: 2rem;
+				height: 2rem;
+			}
+		}
+	}
+
+	.search-info-content {
+		.btn-outline-secondary {
+			border: 2px solid #01a950;
+			border-left: none;
+		}
+	}
+
+	.submit-search {
+		background: stencilColor("color-primary");
+	}
+
+	.search-icon {
+		width: 20px;
+		height: 20px;
+		position: absolute;
+	}
+
+	.dropdown--quickSearch.is-open {
+		// margin-top: 10px;
+		// left: 0 !important;
+		// box-shadow: none !important;
+	}
+
+	@media only screen and (min-width: 1201px) {
+		display: none !important;
+	}
+}
+
+@media only screen and (max-width: 1200px) {
+	.quickSearch-mobileToggle {
+		display: none !important;
+	}
+
+	.search-icon.submit {
+		position: relative;
+		display: flex;
+		align-items: center;
+		left: -30px;
+	}
+	.search-icon.submit .button {
+	background: transparent;
+	color: transparent;
+	background-color: transparent !important;
+	border: 0;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	margin: 0;
+	display: inline-flex;
+	z-index: 999999;
+}
+}
+
+#closeMobileSearch {
+	border: 2px solid stencilColor("color-primary");
+	padding: 0.75rem;
+	border-radius: 9999px;
+
+	svg {
+		top: 0;
+		height: 20px;
+		width: 20px;
+		fill: stencilColor("color-primary");
+	}
+}
+
+// @media only screen and (max-width: 1200px) {
+// 	.mobileMenu-toggle {
+// 		height: 50px;
+// 		left: unset;
+// 		right: 0;
+// 		transition: top 0.7s ease-in-out !important;
+// 		-webkit-transition: top 0.7s ease-in-out !important;
+// 		-moz-transition: top 0.7s ease-in-out !important;
+// 		-o-transition: top 0.7s ease-in-out !important;
+// 		-ms-transition: top 0.7s ease-in-out !important;
+// 	}
+
+// 	.mobileMenu-toggle {
+// 		margin-top: -2px;
+// 	}
+
+// 	// header div#menu {
+// 	// 	display: block !important;
+// 	// }
+
+// 	div#menu .mega-cat-dropdown {
+// 		display: block !important;
+// 		left: initial;
+// 		right: -250px;
+// 		position: fixed;
+// 		-webkit-transition: all 0.4s cubic-bezier(0.46, 0.01, 0.32, 1) 0s !important;
+// 		transition: all 0.4s cubic-bezier(0.46, 0.01, 0.32, 1) 0s !important;
+// 		overflow-y: auto;
+// 		overflow-x: hidden;
+// 		height: 100vh;
+// 		visibility: visible !important;
+// 		opacity: 1 !important;
+// 		border-bottom: 1px solid;
+// 		padding-bottom: 130px !important;
+// 	}
+
+// 	.mega-cat-dropdown {
+// 		right: -300px !important;
+// 		top: 3px;
+// 	}
+
+// 	// Slide the panel into view when the mega-cat button is active
+// 	.mega-cat-nav.active .mega-cat-dropdown {
+// 		right: 0 !important;
+// 	}
+
+// 	// Show mobile content layout, matching ≤800px behavior
+// 	.mega-cat-dropdown div.desktop {
+// 		display: none;
+// 	}
+// 	.mega-cat-dropdown div.mobile {
+// 		display: block;
+// 	}
+
+// 	    .nav-right-fixed .nav-right {
+//         display: none;
+//     }
+
+// 		li.navPages-item.navPages-item-page.container-header.btn {
+//         display: none;
+//     }
+
+// 		div#menu.is-open .mega-cat-dropdown {
+//         right: 0px !important;
+//     }
+// }
+.header-top {
+	padding: 1rem 0;
+	position: relative;
+	z-index: 55;
+
+	&--inner {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 2rem;
+	}
+
+	&--logo {
+		.header-logo-image-container {
+			position: static;
+
+			&::after {
+				padding-bottom: 0;
+			}
+		}
+
+		.header-logo-image,
+		.header-logo-image-unknown-size {
+			position: static;
+			height: auto;
+			aspect-ratio: 60/25;
+			width: 100%;
+			object-fit: contain;
+			max-width: 200px;
+		}
+	}
+
+	&--search {
+		display: none;
+		flex: 1;
+		margin: 0 1.5rem;
+
+		.container {
+			padding: 0;
+		}
+
+		.form {
+			display: flex;
+			align-items: center;
+			border: 2px solid $color-success;
+			border-radius: 50px;
+			overflow: hidden;
+			margin-bottom: 0;
+		}
+
+		.form-fieldset {
+			flex: 1;
+			margin: 0;
+			border: none;
+		}
+
+		.form-field {
+			margin: 0;
+		}
+
+		.form-input {
+			border: none;
+			border-radius: 0;
+			background: transparent;
+			box-shadow: none;
+			width: 100%;
+		}
+
+		.search-icon {
+			svg {
+				fill: $color-success;
+				stroke: $color-success !important;
+				stroke-width: 1;
+			}
+		}
+
+		.quickSearchResults {
+			z-index: 99;
+		}
+	}
+
+	&--phone {
+		display: none;
+		gap: 0.5rem;
+		align-items: center;
+
+		.icon {
+			width: 34px;
+			height: 36px;
+		}
+
+		&--links {
+			display: flex;
+			flex-direction: column;
+			gap: 0.25rem;
+
+			a {
+				color: stencilColor('navUser-color');
+				text-decoration: none;
+
+				&:first-of-type {
+					font-weight: bold;
+				}
+
+				&:hover {
+					color: stencilColor('navUser-color-hover');
+				}
+			}
+		}
+	}
+}
+
+.header {
+	.circled-icon {
+		border: 1px solid stencilColor("color-primary");
+		width: 33px !important;
+		height: 33px !important;
+		border-radius: 9999px;
+		display: flex !important;
+		justify-content: center;
+		align-items: center !important;
+		padding: unset !important;
+		background: #ffffff;
+		margin-right: 0.75rem;
+
+		svg {
+			fill: stencilColor("color-primary");
+			stroke: stencilColor("color-primary");
+		}
+
+		
+	}
+
+	.currency .navUser-action {
+		padding-left: 0 !important;
+	}
+	
+	#menu {
+		z-index: 50;
+
+		.nav-right {
+			width: max-content;
+		}
+
+		&.is-open {
+			z-index: 60;
+		}
+	}
+
+	.mega-cat-dropdown {
+		max-width: 300px;
+		width: 100vw;
+	}
+
+	.mega-cat-nav {
+		& > .navPages-item {
+			background: $color-success;
+			width: 100vw;
+			max-width: 300px;
+
+			.mega-menu-icon {
+				fill: white;
+			}
+
+			.navPages-action {
+				color: white;
+			}
+		}
+	}
+}
+
+
+	i.icon.navPages-action-moreIcon.closed.topLevel + .mobile {
+		display: none !important;
+	}
+
+	i.icon.navPages-action-moreIcon.closed.topLevel.mobile-icon-active + .mobile {
+		display: block !important;
+		padding-top: 1rem;
+	}
+
+	// Vault's base theme unconditionally hides every mega-nav flyout with
+	// `display: none !important` once #menu picks up the scrolled/"fixed" state
+	// (see vault.scss `#menu.fixed .navPage-subMenu.second-level-flyout`). On top
+	// of that, the base (non-fixed) flyout rule for `.second-level-flyout` sets
+	// `display: block; visibility: hidden;` unconditionally (vault.scss ~line 1264)
+	// and only flips to `visibility: visible` via `.active`/hover — so even outside
+	// the fixed state, just toggling display does nothing; visibility has to be
+	// forced too. These overrides key off the classes the sticky-navpages click
+	// handler in footer.html actually adds — `.visible` on the flyout itself, or
+	// `.mobile-parent-active` on the ancestor <li> — and out-specificity the base
+	// rules (adds the #menu id) so they win regardless of stylesheet order or fixed
+	// state.
+	.navPage-subMenu.second-level-flyout.visible,
+	#menu.fixed .navPage-subMenu.second-level-flyout.visible,
+	li.navPages-item.top-level.mobile-parent-active .navPage-subMenu.second-level-flyout,
+	#menu.fixed li.navPages-item.top-level.mobile-parent-active .navPage-subMenu.second-level-flyout {
+		display: block !important;
+		visibility: visible !important;
+	}
+
+
+@media only screen and (min-width: $screen-large) {
+	.header-top {
+		&--search {
+			display: block;
+		}
+
+		&--inner {
+			justify-content: space-between;
+		}
+
+		&--phone {
+			display: flex;
+		}
+	}
+
+	.header {
+		.mega-menu-icon.open {
+			margin-left: 1rem;
+		}
+
+		.burger-menu {
+			margin-left: 0.5rem;
+		}
+	}
+
+	.mega-cat-dropdown li.navPage-subMenu-item-child.second-level {
+		width: 33% !important;
+	}
+
+	.desktop .mega-cat-dropdown li.navPages-item a.navPages-action {
+		font-size: $sixteen-px !important;
+	}
+
+	.mega-cat-dropdown
+		.has-subMenu.is-root
+		+ .navPage-subMenu-horizontal.second-level-flyout {
+		width: 872px !important;
+		left: 298px !important;
+	}
+
+	#menu .navPages-action img {
+		padding-right: 0.25rem;
+	}
+
+	#menu .navPages-list .navPage-subMenu-item a.navPages-action {
+		font-size: $sixteen-px !important;
+	}
+
+	#menu .navPages-list.nav-page-list .navPages-action {
+		font-weight: 400;
+		text-transform: unset;
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+	}
+
+	#menu .nav-page-list.two {
+		display: flex !important;
+		align-items: center;
+	}
+
+	.navPages-action .chevron-down {
+		height: 0.57143rem;
+		width: 0.57143rem;
+	}
+
+	.navPages-action {
+		padding-left: 0.75rem;
+		padding-right: 0.75rem;
+	}
+
+	.navPage-subMenu {
+		.desktop {
+			display: flex;
+			align-items: flex-start;
+			justify-content: start;
+
+			.navPage-subMenu-list {
+				margin: 0;
+			}
+
+			.navPage-subMenu-product {
+				a {
+					font-size: $sixteen-px;
+					text-align: center;
+					margin: 0 auto;
+					text-transform: capitalize;
+				}
+			}
+		}
+	}
+
+	#menu {
+		.navPages-list {
+			.navPage-subMenu {
+				width: max-content !important;
+			}
+
+			.navUser-item--cart {
+				.navUser-action {
+					position: relative;
+				}
+
+				.countPill {
+					position: absolute;
+					top: -7px;
+					right: -7px;
+					aspect-ratio: 1/1;
+					width: fit-content;
+					left: unset;
+					background: #ffffff;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					font-size: 1rem;
+					box-shadow: 1px 0 3px rgba(0,0,0,.4);
+
+					&::after {
+						display: none;
+					}
+				}
+			}
+		}
+	}
+
+	/* Reset the animations on shop dropdown */
+	.mega-cat-nav
+		li.navPages-item.navPages-item-page.container-header.btn.active
+		a,
+	.mega-cat-nav
+		li.navPages-item.navPages-item-page.container-header.btn.active
+		a
+		span.burger-menu,
+	.mega-cat-nav
+		li.navPages-item.navPages-item-page.container-header.btn
+		a
+		span.burger-menu,
+	#menu
+		li.navPages-item.navPages-item-page.container-header.btn.active
+		a.navPages-action {
+		transition: none !important;
+		-webkit-transition: none !important;
+		-moz-transition: none !important;
+		-o-transition: none !important;
+		-ms-transition: none !important;
+	}
+}
+
+.mega-cat-nav .container-header.btn:hover  {
+	span.burger-menu {
+		color: #ffffff;
+	}
+
+	.mega-menu-icon {
+		stroke: #ffffff;
+		fill: #ffffff;
+	}
+}
+
+.mega-cat-nav .container-header.active.btn:hover  {
+	span.burger-menu {
+		color: stencilColor("color-primary");
+	}
+
+	.mega-menu-icon {
+		stroke: stencilColor("color-primary");
+		fill: stencilColor("color-primary");
+	}
+}
+
+// Cart preview dropdown when rendered inside the nav menu (.navPages-wider),
+// not inside .navUser. The base position/background/border styles in
+// _navUser.scss are scoped to .navUser and don't apply here.
+.nav-right {
+	position: relative;
+
+	.dropdown-menu.active {
+		display: block;
+		left: unset;
+		top: 100%;
+		right: 0;
+	}
+
+	#currencySelection {
+		top: 100% !important;
+		right: 0 !important;
+	}
+}
+
+.nav-user-menu-mobile {
+	display: none;
+}
+.mobile-header-link {
+	display: none;
+}
+
+.mega-cat-dropdown::-webkit-scrollbar {
+	width: unset !important;
+}
+.mega-cat-dropdown::-webkit-scrollbar-thumb {
+	background: unset !important;
+	width: unset !important;
+}
+.mega-cat-dropdown::-webkit-scrollbar-track {
+	background: unset !important;
+}
+.dropdown--quickSearch .quickSearchResults::-webkit-scrollbar {
+	width: unset !important;
+}
+.dropdown--quickSearch .quickSearchResults::-webkit-scrollbar-thumb {
+	background: unset !important;
+	width: unset !important;
+}
+.dropdown--quickSearch .quickSearchResults::-webkit-scrollbar-track {
+	background: unset !important;
+}
+.dropdown--quickSearch::-webkit-scrollbar {
+	width: unset !important;
+}
+.dropdown--quickSearch::-webkit-scrollbar-thumb {
+	background: unset !important;
+	width: unset !important;
+}
+.dropdown--quickSearch::-webkit-scrollbar-track {
+	background: unset !important;
+}
+
+@media only screen and (max-width: 1200px) {
+	.mobileMenu-toggle {
+		right: unset;
+		left: 0;
+	}
+	.nav-user-menu-mobile {
+		display: block;
+		right: 30px;
+		position: absolute;
+		// z-index: 99;
+
+		.navUser-action {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 0.5rem;
+			text-transform: capitalize;
+			font-weight: 400;
+		}
+	}
+	.mega-cat-dropdown {
+		right: -300px !important;
+		margin-top: 96px;
+		border-left: 2px solid #ccc !important;
+		padding: 15px !important;
+	}
+
+	.sticky-navpages {
+		hr {
+			border-color: #ccc;
+			margin-bottom: .76923rem;
+		}
+		.currency-menu {
+			float: left;
+			flex-direction: column;
+			position: relative;
+			margin-left: 0 !important;
+			align-items: flex-start;
+
+			.navUser-action {
+				font-size: 13px !important;
+				padding-left: 0;
+				padding-top: 0.25rem !important;
+			}
+
+			#currencySelection--mobileMenu {
+				// position: absolute;
+				right: unset !important;
+				left: 0 !important;
+				width: 300px !important;
+				background: #ffffff;
+				border: 1px solid rgba(0, 0, 0, .15);
+
+				&.active {
+					display: block;
+				}
+			}
+		}
+	}
+
+	.header {
+		height: 100px;
+		padding: 0.25rem 0;
+
+		&.is-open {
+			height: 100px;
+		}
+	}
+	.header-top {
+		padding-top: 0;
+		padding-bottom: 0;
+		// height: 100%;
+
+		&--inner {
+			height: auto;
+		}
+
+		.header-logo {
+			margin: 0 auto !important;
+			width: fit-content !important;
+
+			a {
+				padding-top: 0;
+				padding-bottom: 0;
+
+				.header-logo-image {
+					max-height: unset;
+					width: 140px;
+					height: 57px;
+					object-fit: contain;
+				}
+			}
+		}
+	}
+
+	header div#menu {
+		height: 65px !important;
+	}
+
+	
+
+	.mobile-header-link {
+		text-align: center;
+		margin-bottom: $sixteen-px;
+		display: block;
+	}
+
+	.mobileMenu-toggle-inner {
+		position: relative;
+		background: #ea3a3c;
+		width: 100%;
+		display: flex;
+		height: fit-content;
+		justify-content: center;
+		align-items: center;
+		padding: 0.25rem;
+		cursor: pointer;
+
+		.mega-menu-icon {
+			top: 0;
+			fill: #ffffff;
+		}
+	}
+
+	.mega-cat-dropdown {
+		.mobile {
+			padding: 0.5rem 0;
+		}
+	}
+
+	.mega-cat-dropdown li.navPages-item a.navPages-action,
+	.mega-cat-dropdown li.navPage-subMenu-item-child.second-level a.second-level {
+		padding-top: 0.5rem !important;
+		padding-bottom: 0.5rem !important;
+	}
+}
+
+#menu .nav-minus-logo,
+header div#menu,
+.navPages-wider {
+		max-width: 1330px;
+		width: 100%;
+	}
+
+[data-content-region="main_menu_dropdown--global"] {
+    [data-sub-layout] {
+    all: unset !important;
+  }
+  [data-sub-layout]:after {
+    all: unset !important;
+  }
+  
+  @media only screen and (max-width: 700px) {
+    [data-sub-layout] {
+      all: unset !important;
+    }
+  }
+
+  [data-sub-layout-container] {
+    all: unset !important;
+  }
+
+  [data-sub-layout-container]:after {
+    all: unset !important;
+  }
+}
+
+@media only screen and (min-width: $screen-medium) {
+	.mega-cat-dropdown {
+		height: fit-content !important;
+		padding-bottom: 0 !important;
+	}
+}
+
+@media only screen and (max-width: $screen-medium) {
+	.mega-cat-dropdown {
+		margin-top: 0;
+		top: 0;
+		padding-top: 2rem;
+		z-index: 999 !important;
+		background: #fff;
+	}
+}
+
+@media only screen and (max-width: $screen-medium) {
+	.filterSearchContainer {
+		left: 0 !important;
+		transform: translateY(10px) !important;
+		max-width: unset !important;
+		min-width: calc(100% + 56px) !important;
+	}
+}
+
+@media only screen and (max-width: 830px) {
+	.filterSearchContainer {
+		left: -1.5rem !important;
+		min-width: 100vw !important;
+		max-width: 100% !important;
+		transform: translateY(10px) !important;
+		position: absolute;
+	}
+}
+
+.previewCartAction-viewCart {
+	background: transparent !important;
+
+	.button {
+		background-color: stencilColor("button--primary-backgroundColor");
+
+		&:hover {
+			background: #ffffff;
+			color: stencilColor("button--default-backgroundColor");
+			border-color: stencilColor("button--default-backgroundColor") !important;
+		}
+	}
+}
+
+@media only screen and (max-width: $screen-medium) {
+	.mega-cat-dropdown li.navPage-subMenu-item-child.second-level {
+		margin-bottom: 0;
+	}
+
+	ul.navPage-subMenu-list.all-second-level-plus-container.flyout-page-wrapper {
+		padding-left: 10px;
+	}
+
+	i.icon.navPages-action-moreIcon.closed.topLevel+.mobile {
+		padding-top: 0 !important;
+	}
+
+	.mobile {
+		svg {
+			stroke: #333 !important;
+			width: 12px;
+			height: 12px;
+		}
+	}
+
+	.mega-cat-dropdown .has-subMenu.is-root+.navPage-subMenu-horizontal.second-level-flyout a {
+		padding: 0.5rem 0 !important;
+	}
+
+	.mega-cat-dropdown div.mobile .navPages-action-moreIcon {
+		position: relative;
+		top: 5px;
+		left: 8px;
+	}
+
+	i.icon.navPages-action-moreIcon.mobile-icon-active {
+		left: 4px !important;
+		top: 0 !important;
+	}
+}
+
+@media screen and (max-width: $screen-medium) {
+	.header-top {
+		max-width: fit-content;
+		margin: 0 auto;
+	}
+
+	.mobile-header-link {
+		a {
+			color: stencilColor("color-primary");
+			text-decoration: none;
+		}
+	}
+
+	.sticky-navpages,
+	.mobile {
+		.navPages-action {
+			font-weight: bold !important;
+			text-transform: uppercase !important;
+		}
+
+		.navPage-subMenu-action {
+				font-weight: bold !important;
+				text-transform: capitalize !important;
+			}
+
+		.navPage-subMenu {
+			.navPage-subMenu-action {
+				font-weight: bold !important;
+				text-transform: capitalize !important;
+			}
+			.navPages-action {
+				font-weight: bold !important;
+				text-transform: capitalize !important;
+			}
+		}
+
+		.currency-menu {
+			.navUser-action {
+				font-weight: bold !important;
+			}
+		}
+
+
+	}
+
+	.mega-cat-dropdown li.navPage-subMenu-item-child.second-level a.second-level {
+		font-weight: bold !important;
+	}
+
+	.navUser-item--cart {
+		display: block;
+		z-index: 55;
+		position: relative;
+
+		.navUser-action {
+			flex-direction: column;
+			position: relative;
+			gap: 0;
+			font-size: 12px;
+
+			.cart-icon {
+				fill: stencilColor("color-primary");
+				width: 1.3rem;
+				height: 1.3rem;
+			}
+
+			.countPill {
+				position: absolute;
+				top: 12px;
+				right: -20px;
+				aspect-ratio: 1/1;
+				width: fit-content;
+				left: unset !important;
+				background: stencilColor("color-primary");
+				color: #ffffff !important;
+				display: flex;
+				justify-content: center !important;
+				align-items: center;
+				font-size: 0.85rem;
+
+				&::after {
+					display: none;
+				}
+			}
+		}
+	}
+
+	.mega-nav .mobile:has(.single-level) {
+		max-height: 30px;
+		display: flex;
+        justify-content: center;
+        align-items: center;
+	}
+}

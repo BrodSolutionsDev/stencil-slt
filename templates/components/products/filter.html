@@ -1,0 +1,25 @@
+<div class="sidebar-section">
+    <button class="sidebar-button" id="sidebar-button">
+        <i class="fa fa-bars"></i>
+         sidebar 
+    </button>
+<form class="actionBar" method="get" data-sort-by>
+    {{> components/category/sort-box sort=sort}}
+</form>
+
+</div>
+
+
+<script>
+    (function() {
+        const openSidebarButton = document.getElementById("sidebar-button");
+        const closeSidebarButton = document.getElementById("close-sidebar");
+        const sidebar = document.querySelector(".page-sidebar");
+        openSidebarButton.addEventListener("click", () => {
+            sidebar.classList.add('open');
+        });
+        closeSidebarButton.addEventListener("click", () => {
+            sidebar.classList.remove('open');
+        });
+    })();
+</script>

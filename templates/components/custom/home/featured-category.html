@@ -1,0 +1,14 @@
+<a class="featured-category" href="{{link}}">
+  <div class="featured-category--content">
+    <h3 class="featured-category--title">{{title}}</h3>
+    <span class="featured-category--link">
+      <i class="icon" aria-hidden="true">
+        <svg><use xlink:href="#icon-triangle-right" /></svg>
+      </i>Shop Now</span>
+  </div>
+  {{#if bgImage}}
+  <div class="featured-category--bg">
+    <img src="{{getImageManagerImage bgImage}}" class="featured-category--bgImage">
+  </div>
+  {{/if}}
+</a>

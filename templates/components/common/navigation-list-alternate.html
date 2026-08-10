@@ -1,0 +1,21 @@
+<div class="desktop">
+{{#if children}}
+    <a class="navPages-action navPages-action-depth-max has-subMenu is-root second-level-parent sideNavTopLevel needsclick{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}
+    <i class="icon navPages-action-moreIcon closed topLevel" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
+    </a>
+    {{> components/common/navigation-dropdown}}
+{{else}}
+    <a class="navPages-action single-level sideNavTopLevel needsclick{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
+{{/if}}
+</div>
+
+<div class="mobile">
+{{#if children}}
+    <a class="navPages-action navPages-action-depth-max has-subMenu is-root second-level-parent sideNavTopLevel needsclick{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}
+    </a>
+     <i class="icon navPages-action-moreIcon closed topLevel" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
+    {{> components/common/navigation-dropdown}}
+{{else}}
+    <a class="navPages-action single-level sideNavTopLevel needsclick{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
+{{/if}}
+</div>

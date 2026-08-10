@@ -1,0 +1,151 @@
+.brand-image-container {
+    max-width: 150px;
+}
+
+.brandGrid {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    row-gap: 3rem;
+
+    .brand {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+
+        .card {
+            background-color: transparent;
+            padding: 0 0;
+            word-wrap: break-word;
+
+            .card-image {
+                border: 1px solid #ddd;
+            }
+
+            .card-body {
+                text-align: center;
+                margin: 10px 0;
+                padding: .76923rem 0 0;
+            }
+        }
+    }
+
+    &::before,
+    &::after {
+        display: none;
+    }
+
+    @media (min-width: 576px) {
+        .brand {
+            flex: 0 0 16.666667%;
+            max-width: 16.666667%;
+        }
+    }
+}
+
+.sidebar-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+
+    .sidebar-button {
+        justify-content: flex-start;
+        align-self: center;
+        width: fit-content;
+        height: fit-content;
+        border: 2px solid #999;
+        padding: 2px 15px;
+        color: #495057;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 11px;
+        line-height: 25px;
+
+        i {
+            margin-right: 5px;
+        }
+
+        &:hover {
+            border-color: stencilColor("color-primary");
+        }
+    }
+
+    .actionBar {
+        justify-self: flex-end;
+        align-self: center;
+
+        .form-field {
+            margin-bottom: 0;
+        }
+    }
+
+    @media only screen and (min-width: $screen-medium) {
+        grid-template-columns: 1fr;
+
+        .sidebar-button {
+            display: none;
+        }
+    }
+
+    @media only screen and (max-width: 567px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+#close-sidebar {
+    display: none;
+}
+
+@media only screen and (max-width: $screen-medium) {
+    .page-sidebar {
+        position: fixed;
+        width: 100vw;
+        max-width: 280px;
+        z-index: 999999;
+        background: #ffffff;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        padding: 15px;
+        margin-top: 0;
+        left: -280px;
+        transition: left 0.25s;
+        // display: none;
+
+        #close-sidebar {
+            position: relative;
+            background: #ea3a3c;
+            width: 100%;
+            display: flex;
+            height: fit-content;
+            justify-content: center;
+            align-items: center;
+            padding: 9px 20px;
+            cursor: pointer;
+            border-radius: 3px;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+    }
+
+    .page-sidebar.open {
+        left: 0;
+        overflow: auto;
+    }
+
+    .body:has(.page-sidebar.open) {
+        overflow: hidden;
+
+        &::after {
+            content: "";
+            position: fixed;
+            z-index: 99999;
+            background: rgba(0,0,0,.5);
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+    }
+}

@@ -1,0 +1,129 @@
+@font-face {
+	font-family: 'icomoon';
+	src: url('https://cdn11.bigcommerce.com/s-rwbd9uo0md/stencil/a0a7f900-846d-0139-ce18-56070be16313/e/25a81f90-eb75-013d-d5db-5a85a78bb7bf/fonts/icomoon.eot?pdewnu');
+	src: url('https://cdn11.bigcommerce.com/s-rwbd9uo0md/stencil/a0a7f900-846d-0139-ce18-56070be16313/e/25a81f90-eb75-013d-d5db-5a85a78bb7bf/fonts/icomoon.eot?pdewnu#iefix')
+			format('embedded-opentype'),
+		url('https://cdn11.bigcommerce.com/s-rwbd9uo0md/stencil/a0a7f900-846d-0139-ce18-56070be16313/e/25a81f90-eb75-013d-d5db-5a85a78bb7bf/fonts/icomoon.ttf?pdewnu')
+			format('truetype'),
+		url('https://cdn11.bigcommerce.com/s-rwbd9uo0md/stencil/a0a7f900-846d-0139-ce18-56070be16313/e/25a81f90-eb75-013d-d5db-5a85a78bb7bf/fonts/icomoon.woff?pdewnu')
+			format('woff'),
+		url('https://cdn11.bigcommerce.com/s-rwbd9uo0md/stencil/a0a7f900-846d-0139-ce18-56070be16313/e/25a81f90-eb75-013d-d5db-5a85a78bb7bf/fonts/icomoon.svg?pdewnu#icomoon')
+			format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display: block;
+}
+
+body {
+  overflow-x: unset;
+  line-height: 1.2;
+
+  @media only screen and (max-width: $screen-medium) {
+    padding-top: 80px;
+
+    .body.category,
+    .body.brands,
+    .body.brand,
+    .body.blog_post {
+      padding-top: 1px;
+    }
+
+    .body.blog {
+      padding-top: 10px;
+    }
+  }
+}
+
+// variables
+$sixteen-px: 1.14rem;
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+
+  @media only screen and (min-width: 576px) {
+    max-width: 540px;
+  }
+
+   @media only screen and (min-width: 768px) {
+    max-width: 720px;
+  }
+
+  @media only screen and (min-width: 992px) {
+    max-width: 960px;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    max-width: 1140px;
+  }
+
+  @media only screen and (min-width: 1360px) {
+    max-width: 1330px;
+  }
+}
+
+// Always disable the theme default dark overlay when menu open.
+// Dark overlay is too buggy to be reliable
+#shopnav-dim-page.active #mask {
+	display: none !important;
+}
+
+.breadcrumbs {
+  margin: 1rem 0;
+}
+
+.page-content {
+  padding-left: 0 !important;
+}
+
+.button {
+  padding: 14px 18px;
+}
+
+@media only screen and (max-width: $screen-medium) {
+  .page {
+    margin-top: 53px;
+  }
+}
+
+.button--primary {
+  &:hover {
+    border-color: stencilColor("button--primary-backgroundColor") !important;
+  }
+}
+
+a {
+  color: stencilColor("color-primary");
+  text-decoration: none;
+
+  &:hover {
+    color: stencilColor("color-textBase");
+  }
+}
+
+@media (max-width: 576px) {
+    .page-content h2, .page-content h2 * {
+        font-size: 18px;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .page-content h3, .page-content h3 * {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 1201px) {
+    .page {
+        margin-top: 15px;
+    }
+}
+
+p:not([data-content-region] p) {
+    line-height: unset;
+}

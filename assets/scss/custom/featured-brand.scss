@@ -1,0 +1,129 @@
+.home-featured-brands {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+
+	@media only screen and (min-width: $screen-medium) {
+		flex-direction: row;
+		flex-wrap: wrap;
+
+		.featured-brand:nth-of-type(1),
+		.featured-brand:nth-of-type(2) {
+			width: calc(50% - 1rem);
+		}
+
+		.featured-brand:nth-of-type(3),
+		.featured-brand:nth-of-type(4),
+		.featured-brand:nth-of-type(5) {
+			width: calc(33.33333% - 1.3333rem);
+		}
+	}
+}
+
+.featured-brand {
+	position: relative;
+	border: 2px solid #333;
+	border-radius: 0.75rem;
+	height: 185px;
+	padding: 1.5rem;
+	display: block;
+	text-decoration: none;
+
+	&--content {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	&--link {
+		font-weight: bold;
+		color: stencilColor("color-textBase");
+
+		&:hover {
+			color: stencilColor("color-primary");
+		}
+
+		.icon {
+			width: 1.5rem;
+			height: 1.5rem;
+
+			svg {
+				fill: stencilColor('color-textLink--hover');
+				stroke: stencilColor('color-textLink--hover');
+			}
+		}
+	}
+
+	&--bg {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		z-index: -2;
+
+		&::before {
+			position: absolute;
+			background: #ffffff;
+			opacity: 0;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			content: '';
+			transition: all 300ms ease;
+		}
+	}
+
+	&--logo {
+		position: relative;
+		width: fit-content;
+		padding: 0.75rem;
+
+		&--img {
+			width: 100%;
+			max-height: 75px;
+			max-width: 200px;
+		}
+
+		&::before {
+			position: absolute;
+			background: #ffffff;
+			opacity: 0.8;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			content: '';
+			transition: all 300ms ease;
+			z-index: -1;
+		}
+	}
+
+	&--bgImage {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		object-fit: contain;
+		z-index: -2;
+		padding: 0.5rem;
+	}
+
+	&:hover {
+		.featured-brand--logo::before {
+			opacity: 0;
+		}
+		.featured-brand--bg::before {
+			opacity: 0.8;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			content: '';
+			position: absolute;
+			z-index: -1;
+		}
+	}
+}

@@ -1,0 +1,61 @@
+{{#each categories}}
+	{{#if id '==' ../category_id}}
+  {{#if (merge ../../this 
+    category_name = name
+    category_url = url)}}
+		{{/if}}
+    {{else}}
+		{{#each children}}
+    {{#if id '==' ../../../category_id}}
+				{{#if (merge ../../../../this
+					category_name = name
+					category_url = url)}}
+				{{/if}}
+			{{/if}}
+		{{/each}}
+	{{/if}}
+{{/each}}
+
+<div class="sb-category-slider">
+	{{#if category_url}}
+		<div class="spcat-heading d-flex">
+			<h3 class="block-title"><a href="{{category_url}}" title="{{name}}">{{category_name}}</a></h3>
+			<ul class="tabs align-self-end">
+			{{#each categories}}
+				
+				{{#if id '==' ../category_id}}
+					{{#each (limit children 3) }}
+						<li class="tab"><a href="{{url}}" class="tab-title">{{name}}</a></li>
+					{{/each}}
+          {{else}}
+					{{#each children}}
+          {{#if id '==' ../../../category_id}}
+						{{#each (limit children 3) }}
+						<li class="tab"><a href="{{url}}" class="tab-title">{{name}}</a></li>
+						{{/each}}
+						{{/if}}
+					{{/each}}
+				{{/if}}
+			{{/each}}
+			
+			<li class="tab view-all"><a href="{{category_url}}" class="tab-title">View All</a></li>
+			</ul>
+		</div>
+			
+		<div class="spcat-items-container row no-gutters"
+			data-products-by-category-tabs="{{category_url}}?sort={{sort_order}}" 
+			data-urltemplate="custom/home/slider/product-slider-tabs-content"
+		>
+			<div class="productLoading" >
+				<img class="img-responsive lazyload" src="{{cdn '/assets/img/loading.svg'}}" alt="loading" width="50" height="50" >
+			</div>
+		</div>
+				
+	{{else}}
+		<div class="alert alert-info" role="alert"  style="margin:0 0 30px">
+			<i class="fa fa-info-circle"></i> 
+		   No category
+		</div>
+	
+	{{/if}}
+</div>

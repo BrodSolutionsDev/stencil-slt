@@ -1,0 +1,93 @@
+{{#each product.custom_fields}}
+    {{#startsWith 'manual' (toLowerCase name)}}
+        {{assignVar 'hasManuals' 1}}
+    {{/startsWith}}
+
+    {{#startsWith 'firmware' (toLowerCase name)}}
+        {{assignVar 'hasFirmware' 1}}
+    {{/startsWith}}
+{{/each}}
+
+<ul class="tabs" data-tab>
+    <li class="tab is-active">
+        <a class="tab-title" href="#tab-description"><span class="theme-icon" data-icon="&#xe90a;"></span> {{lang 'products.description'}}</a>
+    </li>
+    {{#if product.warranty}}
+        <li class="tab">
+            <a class="tab-title" href="#tab-warranty">{{lang 'products.warranty'}}</a>
+        </li>
+    {{/if}}
+    {{#if product.custom_fields}}
+        <li class="tab">
+            <a class="tab-title" href="#tab-specifications"><span class="theme-icon" data-icon="&#xe909;"></span> Specifications</a>
+        </li>
+    {{/if}}
+    {{#if (getVar 'hasManuals')}}
+        <li class="tab">
+            <a class="tab-title" href="#tab-manuals"><span class="theme-icon" data-icon="&#xe909;"></span> Manuals</a>
+        </li>
+    {{/if}}
+    {{#if (getVar 'hasFirmware')}}
+        <li class="tab">
+            <a class="tab-title" href="#tab-firmware"><span class="theme-icon" data-icon="&#xe909;"></span> Firmware</a>
+        </li>
+    {{/if}}
+    {{#if product.videos}}
+        <li class="tab">
+            <a class="tab-title" href="#tab-videos"><span class="theme-icon" data-icon="&#xe90d;"></span> Videos</a>
+        </li>
+    {{/if}}
+</ul>
+<div class="tabs-contents">
+    <div class="tab-content is-active" id="tab-description">
+        {{{product.description}}}
+        {{{snippet 'product_description'}}}
+    </div>
+   {{#if product.warranty}}
+       <div class="tab-content" id="tab-warranty">
+           {{{product.warranty}}}
+       </div>
+   {{/if}}
+   {{#if product.custom_fields}}
+       <div class="tab-content tab-custom-fields" id="tab-specifications">
+           {{#each product.custom_fields}}
+                {{#startsWith 'manual' (toLowerCase name)}}
+                {{else}}
+                <div class="line-item-details custom-fields">
+                    <dt class="productView-info-name">{{name}}:</dt>
+                    <dd class="productView-info-value">{{{value}}}</dd>
+                </div>
+                {{/startsWith}}
+            {{/each}}
+       </div>
+   {{/if}}
+   {{#if (getVar 'hasManuals')}}
+       <div class="tab-content tab-custom-fields" id="tab-manuals">
+           {{#each product.custom_fields}}
+                {{#startsWith 'manual' (toLowerCase name)}}
+                <div class="line-item-details custom-fields">
+                    <dt class="productView-info-name">{{name}}:</dt>
+                    <dd class="productView-info-value">{{{value}}}</dd>
+                </div>
+                {{/startsWith}}
+            {{/each}}
+       </div>
+   {{/if}}
+   {{#if (getVar 'hasFirmware')}}
+       <div class="tab-content tab-custom-fields" id="tab-firmware">
+           {{#each product.custom_fields}}
+                {{#startsWith 'firmware' (toLowerCase name)}}
+                <div class="line-item-details custom-fields">
+                    <dt class="productView-info-name">{{name}}:</dt>
+                    <dd class="productView-info-value">{{{value}}}</dd>
+                </div>
+                {{/startsWith}}
+            {{/each}}
+       </div>
+   {{/if}}
+   {{#if product.videos}}
+       <div class="tab-content" id="tab-videos">
+           {{> components/products/videos}}
+       </div>
+   {{/if}}
+</div>

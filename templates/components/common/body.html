@@ -1,0 +1,15 @@
+<div class="body {{#if page_type}}{{page_type}}{{/if}} 
+  {{#if page.title}}page-{{dashcase page.title}}{{/if}} 
+  {{#if category}}category category-{{dashcase category.name}}{{/if}} 
+  {{#if product}}product product-{{dashcase product.title}}{{/if}} 
+  {{#if brand}}brand brand-{{dashcase brand.name}}{{/if}} 
+  {{#if cart}}cart{{/if}} 
+  {{#if checkout}}checkout{{/if}} 
+  {{#if customer}}logged-in{{/if}}" data-currency-code="{{currency_selector.active_currency_code}}">
+    {{#block "hero"}} {{/block}}
+    <div class="container">
+        {{#block "page"}} {{/block}}
+    </div>
+    {{> components/common/modal/modal}}
+    {{> components/common/alert/alert-modal}}
+</div>

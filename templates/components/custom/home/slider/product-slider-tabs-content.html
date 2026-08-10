@@ -1,0 +1,79 @@
+{{!--
+<div>
+	<p>Main: <a href="{{mainLink}}">{{mainLinkText}}</a></p>
+	<ul>
+		{{#for 1 3}}
+		{{assignVar 'navLink' (lookup ../settings (multiConcat 'home_slider_' ../parentIndex '_nav_link_' $index))}}
+		{{assignVar 'navLinkText' (lookup ../settings (multiConcat 'home_slider_' ../parentIndex '_nav_text_' $index))}}
+		<li>Nav: <a href="{{getVar 'navLink'}}">{{getVar 'navLinkText'}}</a></li>
+		{{/for}}
+		<li>Nav: <a href="{{mainLink}}">View All</a></li>
+	</ul>
+</div>
+--}}
+
+
+
+
+{{#if category.products }}
+<div class="productSlider-content--carousel">
+		<section class="productCarousel products-list" data-slick='{
+				"dots": true,
+				"infinite": false,
+				"mobileFirst": true,
+				"slidesToShow": 1,
+				"slidesToScroll": 1,
+				"arrows": false
+			}'>
+			{{#forEach (limit category.products 3) }}
+			<div class="productCarousel-slide product-layout product-grid">
+				{{>components/products/card settings=../settings show_compare=../show_compare
+				show_rating=../settings.show_product_rating theme_settings=../theme_settings customer=../customer event=../event
+				position=(add @index 1)}}
+			</div>
+			{{/forEach}}
+		</section>
+</div>
+
+	<div class="productSlider-content--list">
+		<section class="productCarousel products-list" data-slick='{
+				"dots": false,
+				"infinite": false,
+				"mobileFirst": true,
+				"slidesToShow": 1,
+				"slidesToScroll": 1,
+				"arrows": false
+			}'>
+
+			{{#forEach (limit category.products 3)}}
+			{{#if isFirst}}
+			<div class="first-side productCarousel-slide product-layout product-list">
+				{{/if}}
+
+
+				{{!-- {{#or (if index '===' (add 1 ../theme_settings.homepage_categoryslider_row)) (if index '===' (add 1 (multiply 2 ../theme_settings.homepage_categoryslider_row))) (if index '===' (add 1 (multiply 3 ../theme_settings.homepage_categoryslider_row))) }} --}}
+				{{#or (if index '===' (add 1 3)) (if index '===' (add 1 (multiply 2 3))) (if index '===' (add 1 (multiply 3 3))) }}
+				<div class="productCarousel-slide product-layout product-list">
+					{{/or}}
+
+					{{> components/custom/products/card_row
+						show_rating=../../settings.show_product_rating
+						alternate=../../alternate
+						theme_settings=../../theme_settings customer=../../customer
+					}}
+
+					{{!-- {{#or (if index '===' ../theme_settings.homepage_categoryslider_row)(if index '==='(multiply 2 ../theme_settings.homepage_categoryslider_row)) (if index '==='(multiply 3 ../theme_settings.homepage_categoryslider_row) (if index '===' total))}} --}}
+					{{#or (if index '===' 3)(if index '==='(multiply 2 3)) (if index '==='(multiply 3 3) (if index '===' total))}}
+				</div>
+				{{/or}}
+				{{/forEach}}
+
+		</section>
+	</div>
+
+{{else}}
+<div class="alert alert-info" role="alert" style="margin:30px 20px;width:100%;">
+	<i class="fa fa-info-circle"></i>
+	No products
+</div>
+{{/if}}

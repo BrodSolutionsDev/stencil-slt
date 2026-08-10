@@ -1,0 +1,61 @@
+{{#if banners.top}}
+<div class="banners" data-banner-location="top">
+    {{#each (limit banners.top_metadata 1)}}
+    <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
+        <div data-event-type="promotion-click">
+            {{{this.content}}}
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{/if}}
+<header class="header header-logo--{{theme_settings.logo-position}}" role="banner">
+  <div class="mobile-header-link">
+    <a href="tel:1-888-814-2425">1-888-814-2425</a>
+  </div>
+    <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
+        <span class="mobileMenu-toggleIcon">Toggle menu</span>
+    </a>
+
+    
+    <ul class="nav-user-menu nav-user-menu-mobile">
+            <li class="navPages-item navUser-item--cart">
+              <a class="navUser-action navPages-action"
+                 href="{{urls.cart}}"
+                 aria-label="{{lang 'cart.nav_aria_label'}}"
+              >
+                <span class="navUser-item-cartLabel"><svg class="header-icon cart-icon"><use xlink:href="#icon-cart-filled"></use></svg></span> <span class="countPill cart-quantity"></span> Cart
+              </a>
+            </li>
+              </ul>
+
+    {{> components/custom/common/header-top}}
+
+    <div id="menu-wrapper">
+        <div class="navPages-container" id="menu" data-menu>
+          {{> components/custom/common/navigation-menu}}
+          <div class="clear"></div>
+        </div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+
+</header>
+  <div class="mobile-search">
+    <div class="header-top--search">
+      <div class="col-12 search-info-content" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
+        {{> components/common/quick-search}}
+      </div>
+      <div class="header-top--closeSearch">
+        <button id="closeMobileSearch">
+          <svg class="mega-menu-icon close">
+            <use xlink:href="#icon-close"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="below_nav_container">
+      {{{region name="header_below_nav--global"}}}
+  </div>
+<div class="below_nav_clear clear" style="margin-top: 0px;"></div>

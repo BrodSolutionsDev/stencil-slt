@@ -1,0 +1,11 @@
+<div class="aboutUsBlock">
+  {{#if link}}
+  <a href="{{link}}" class="aboutUsBlock--link">
+    {{/if}}
+  <img src="{{getImageManagerImage icon}}" class="aboutUsBlock--image" loading="lazy">
+  <h3 class="aboutUsBlock--title">{{title}}</h3>
+  <p class="aboutUsBlock--description">{{description}}</p>
+  {{#if link}}
+  </a>
+  {{/if}}
+</div>

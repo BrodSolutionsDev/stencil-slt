@@ -1,0 +1,39 @@
+{{#partial "page"}}
+
+<div class="page">
+  <div class="blog-post-container blog">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    <div class="sidebar-section">
+    <button class="sidebar-button" id="sidebar-button">
+        <i class="fa fa-bars"></i>
+         sidebar 
+    </button>
+</div>
+      
+    <aside class="page-sidebar">
+      <span id="close-sidebar" class=" fa fa-times"></span>
+            {{> components/custom/blog/sidebar hide_shop=1}}
+        </aside>
+      <main class="page-content">
+      {{> components/custom/blog/post-post post=blog.post show_tags=true}}
+      </main>
+  </div>
+</div>
+
+{{/partial}}
+{{> layout/base}}
+
+<script>
+    (function() {
+        const openSidebarButton = document.getElementById("sidebar-button");
+        const closeSidebarButton = document.getElementById("close-sidebar");
+        const sidebar = document.querySelector(".page-sidebar");
+        openSidebarButton.addEventListener("click", () => {
+            sidebar.classList.add('open');
+        });
+        closeSidebarButton.addEventListener("click", () => {
+            sidebar.classList.remove('open');
+        });
+    })();
+</script>

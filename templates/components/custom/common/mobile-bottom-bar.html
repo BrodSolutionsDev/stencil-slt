@@ -1,0 +1,50 @@
+<section class="mobileBottomBar">
+    <div class="mobileBottomBar-tab">
+        <a id="toggle-mobile-shop" class="mobileBottomBar-tab--link">
+            <img src="/content/site/Home_Images/shop-icon.png" alt="shop">
+            <span class="mobileBottomBar-tab--label">Shop</span>
+        </a>
+    </div>
+    <div class="mobileBottomBar-tab">
+        <a id="toggle-mobile-explore" class="mobileBottomBar-tab--link">
+            <img src="/content/site/Home_Images/web-icon.png" alt="explore">
+            <span class="mobileBottomBar-tab--label">Explore</span>
+        </a>
+    </div>
+    <div class="mobileBottomBar-tab">
+        <a href="/contact-us/" class="mobileBottomBar-tab--link">
+            <img src="/content/site/Home_Images/headset.png" alt="support">
+            <span class="mobileBottomBar-tab--label">Support</span>
+        </a>
+    </div>
+    <div class="mobileBottomBar-tab">
+        <a id="toggle-mobile-search" class="mobileBottomBar-tab--link">
+            <img src="/content/site/Home_Images/search-icon.png" alt="search">
+            <span class="mobileBottomBar-tab--label">Search</span>
+        </a>
+    </div>
+</section>
+
+
+<script>
+	window.addEventListener("load", function() {
+		const searchButton = document.getElementById("toggle-mobile-search");
+        const closeSearchButton = document.getElementById("closeMobileSearch");
+		const mobileSearch = document.querySelector(".mobile-search");
+
+		searchButton.addEventListener("click", function() {
+			if (mobileSearch.style.display === 'block') {
+				mobileSearch.style.display = 'none';
+				mobileSearch.firstelementChild.setAttribute('aria-hidden', true);
+			} else {
+				mobileSearch.style.display = 'block';
+				mobileSearch.firstElementChild.setAttribute('aria-hidden', false);
+			}
+		});
+
+        closeSearchButton.addEventListener("click", function() {
+            mobileSearch.style.display = 'none';
+            mobileSearch.firstelementChild.setAttribute('aria-hidden', true);
+        });
+	});
+</script>

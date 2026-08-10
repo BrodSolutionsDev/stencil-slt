@@ -1,0 +1,8 @@
+{{#if children}}
+    <a class="navPages-action navPages-action-depth-max has-subMenu is-root second-level-parent sideNavTopLevel {{#if is_active}} activePage{{/if}}" href="{{url}}">
+        {{name}} <i class="icon navPages-action-moreIcon topLevel" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
+    </a>
+    {{> components/common/navigation-simple-dropdown}}
+{{else}}
+    <a class="navPages-action single-level sideNavTopLevel {{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
+{{/if}}

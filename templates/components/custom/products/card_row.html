@@ -1,0 +1,29 @@
+<article class="product-item-container {{#if alternate}}card--alternate{{/if}}">
+    <div class="left-block">
+        <a href="{{url}}" class="product-item-photo">
+            <img class="card-image lazyload" data-sizes="auto" src="{{cdn '/assets/img/loading.svg'}}" data-src="{{getImage image 'extraslider_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" width="85" height="85">
+        </a>
+    </div>
+
+    <div class="right-block">
+        <h4 class="card-title">
+            <a href="{{url}}">{{name}}</a>
+        </h4>
+
+		{{#if show_rating}}
+            <p class="card-text" data-test-info-type="productRating">
+                <span class="rating--small">
+                    {{> components/products/ratings rating=rating}}
+                </span>
+            </p>
+        {{/if}}
+	   
+        {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+            {{> components/products/price price=price customer=customer}}
+        {{else}}
+            {{> components/common/login-for-pricing}}
+        {{/or}}
+        
+      
+    </div>
+</article>

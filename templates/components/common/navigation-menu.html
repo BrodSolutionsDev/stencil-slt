@@ -1,0 +1,123 @@
+<div class="navPages-wider desktop">
+  {{#if theme_settings.show_logo_in_sticky_nav '===' true}}
+  <li class="navPages-item sticky-object logo">
+    {{> components/common/sticky-logo}}
+  </li>
+  {{/if}}
+  <div class="nav-minus-logo">
+  <div class="mega-cat-nav {{#if theme_settings.show_logo_in_sticky_nav '===' true}}sticky-logo{{/if}}">
+    <li class="navPages-item navPages-item-page container-header btn">
+      <a class="navPages-action">
+        <svg class="mega-menu-icon open"><use xlink:href="#icon-v-menu" /></svg><svg class="mega-menu-icon close"><use xlink:href="#icon-close" /><span class="burger-menu">{{theme_settings.mega_nav_name}}</span><span class="burger-menu fixed">{{theme_settings.sticky_mega_nav_name}}</span>
+      </a>
+      <div class="clear"></div>
+    </li>
+    <nav class="navPages">
+      <div class="mega-cat-dropdown">
+        <div class="inner">
+
+        <div id="page-wrapper">
+        <div class="category-list">
+          <h2 class="container-header mobile">Categories</h2>
+        {{#each categories}}
+          <li class="navPages-item top-level categories{{#if is_active}} activePage{{/if}}">
+          {{#if ../theme_settings.navigation_design '===' 'simple'}}
+              {{> components/common/navigation-list}}
+          {{/if}}
+          {{#if ../theme_settings.navigation_design '===' 'alternate'}}
+              {{> components/common/navigation-list-alternate}}
+          {{/if}}
+          </li>
+        {{/each}}
+        </div>
+      <div class="pagination-container"><a class="navPages-action previous"><i class="icon prev" aria-hidden="true"><svg><use xlink:href="#icon-chevron-left" /></svg></i></a><span class="dots"></span><a class="navPages-action next"><i class="icon next" aria-hidden="true"><svg><use xlink:href="#icon-chevron-left" /></svg></i></a></div>
+      <hr class="sidenav"/>
+        </div>
+        </div>
+
+        {{#if theme_settings.show_pages_in_mobile_nav '===' true}}
+        <div class="sticky-navpages">
+          <h2 class="container-header mobile">Navigation</h2>
+          {{#each pages}}
+            <li class="navPages-item top-level{{#if is_active}} activePage{{/if}} pages mega-nav-pages">
+                {{> components/common/mega-nav-page-list}}
+            </li>
+          {{/each}}
+        </div>
+        {{/if}}
+
+        <!-- BRANDS VISIBILITY -->
+        <div class="brands {{#if theme_settings.show_brands_in_main_mega_nav '===' false}}brands-hidden {{/if}}{{#if theme_settings.show_brands_in_sticky_nav '===' false}}sticky-brands-hidden{{/if}}">
+          <h2 class="container-header mobile">Brands</h2>
+            {{#each shop_by_brand}}
+                   <li class="navPages-item mobile">
+                        <a class="navPages-action" href="{{url}}">{{name}}</a>
+                    </li>
+            {{/each}}
+                    <li class="navPages-item mobile view-all brands">
+                        <a class="navPages-action" href="/brands/">View all Brands</a>
+                    </li>
+        </div>
+        {{#if customer.store_credit.value '>' 0}}
+        <ul class="nav-user-menu">
+            <li class="navUser-item navUser-item--storecredit">
+                <a class="navUser-action navUser-action--storeCredit"
+                   data-dropdown="storeCredit-dropdown"
+                   data-options="align:bottom"
+                   href="{{urls.cart}}">
+                        <span class="navUser-action-divider">{{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}</span>
+                </a>
+                <div class="dropdown-menu" id="storeCredit-dropdown" data-dropdown-content aria-hidden="true">
+                    {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
+                </div>
+                <div class="clear"></div>
+            </li>
+        </ul>
+        {{/if}}
+            <div class="clear"></div>
+
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="nav-right-fixed">
+    <div class="nav-right">
+    <ul class="navPages-list nav-page-list one {{#if theme_settings.navigation_design '!==' 'simple'}} navPages-list-depth-max{{/if}}">
+      {{#unless theme_settings.hide_category_navigation}}
+        {{#each categories}}
+            <li class="navPages-item categories">
+            {{#if ../theme_settings.navigation_design '===' 'simple'}}
+                {{> components/common/navigation-list}}
+            {{/if}}
+            {{#if ../theme_settings.navigation_design '===' 'alternate'}}
+                {{> components/common/navigation-list-alternate}}
+            {{/if}}
+            </li>
+        {{/each}}
+        {{/unless}}
+        {{#unless theme_settings.hide_content_navigation}}
+        <ul class="navPages-list nav-page-list two">
+       {{#each pages}}
+           <li class="navPages-item">
+               {{> components/common/navigation-page-list}}
+           </li>
+       {{/each}}
+       {{#if settings.phone_number}}
+         <li class="navPages-item navPages-item-page pages phone-number">
+           <a class="navPages-action phone-number" href="tel:{{settings.phone_number}}">{{settings.phone_number}}</a>
+         </li>
+       {{/if}}
+   </ul>
+        {{/unless}}
+
+    </ul>
+    </div>
+
+
+
+</nav>
+
+</div>
+
+</div>
+</div>

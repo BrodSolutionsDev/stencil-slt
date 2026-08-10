@@ -1,0 +1,11 @@
+{
+  "customLayouts": {
+    "brand": {},
+    "category": {},
+    "page": {},
+    "product": {}
+  },
+  "normalStoreUrl": "https://safelivingtechnologies.com",
+  "port": 3000,
+  "packageManager": "pnpm"
+}

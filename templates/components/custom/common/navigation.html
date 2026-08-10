@@ -1,0 +1,58 @@
+<nav class="navUser">
+    <ul class="navUser-section navUser-section--alt">
+        {{#if customer.store_credit.value '>' 0}}
+            <li class="navUser-item navUser-item--storecredit desktop">
+                <a class="navUser-action navUser-action--storeCredit"
+                   data-dropdown="storeCredit-dropdown"
+                   data-options="align:bottom"
+                   href="{{urls.cart}}">
+                        <span class="navUser-action-divider">{{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}</span>
+                </a>
+                <div class="dropdown-menu" id="storeCredit-dropdown" data-dropdown-content aria-hidden="true">
+                    {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
+                </div>
+                <div class="clear"></div>
+            </li>
+        {{/if}}
+
+        <div class="dropdown dropdown--quickSearch desktop" id="quickSearch" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
+            {{> components/common/quick-search}}
+        </div>
+
+        <div class="user-icons">
+            {{!--
+          <li class="navUser-item navUser-item--cart user-icons">
+            <a class="navUser-action"
+               data-cart-preview
+               data-dropdown="cart-preview-dropdown"
+               data-options="align:right"
+               href="{{urls.cart}}"
+               aria-label="{{lang 'cart.nav_aria_label'}}"
+            >
+                <!-- <span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span>
+                <span class="countPill cart-quantity"></span> -->
+                <span class="navUser-item-cartLabel"><svg class="header-icon cart-icon"><use xlink:href="#icon-cart"></use></svg></span> <span class="countPill cart-quantity"></span>
+            </a>
+
+            <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
+        </li>
+        --}}
+
+          {{>components/common/currency-selector}}
+
+        {{#if settings.gift_certificates_enabled}}
+            <li class="navUser-item user-icons gift-certificates">
+                <a alt="Gift Certificates" class="navUser-action" href="{{urls.gift_certificate.purchase}}"><svg class="header-icon gift-icon"><use xlink:href="#icon-gift" /></svg></a>
+            </li>
+        {{/if}}
+
+        <a class="navUser-action navUser-item--compare" href="{{urls.compare}}" data-compare-nav><svg class="header-icon compare-icon"><use xlink:href="#icon-compare"></use></svg><span class="countPill countPill--positive countPill--alt compare"></span></a>
+        
+        <li class="navUser-item quicksearch mobile">
+            <a class="navUser-action navUser-action--quickSearch desktop-toggle" href="#" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false"><svg class="header-icon search-icon"><use xlink:href="#icon-search"></use></svg></a>
+        </li>
+
+    </ul>
+    </div>
+
+</nav>

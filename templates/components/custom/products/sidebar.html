@@ -1,0 +1,56 @@
+<nav>
+    {{#unless hide_shop}}
+    <div class="sidebarBlock sidebar--categories">
+        <h5 class="sidebarBlock-heading"><i class="far fa-gem"></i> Shop</h5>
+        <div class="block-content clearfix">
+            <ul class="navList">
+                {{#each categories}}
+                <li class="navList-item">
+                    {{#if children}}
+                        <a class="navList-action has-subMenu{{#if id '==' ../../category.id}} is-current{{/if}}" href="{{url}}"> {{name}} </a>
+                        <a 
+                            class="navList-toggle{{#if id '==' ../../category.id}} is-open{{/if}}"
+                            data-collapsible="navList-category-{{id}}"
+                        >
+                            <i class="icon navList-action-moreIcon" aria-hidden="{{#if id '==' ../../category.id}}true{{else}}false{{/if}}">
+                                <svg><use xlink:href="#icon-chevron-down" /></svg>
+                            </i>
+                        </a>
+
+                        <ul class="navList-subMenu-list{{#if id '==' ../../category.id}} is-open{{/if}}" id="navList-category-{{id}}">
+                            {{#each children}}
+                                <li class="navList-subMenu-item">
+                                    {{#if children}}
+                                        <a class="navList-subMenu-action navList-action has-subMenu{{#if id '==' ../../../../category.id}} is-current{{/if}}" href="{{url}}" alt="{{name}}" title="{{name}}">{{name}}</a>
+                                        <a class="navList-subMenu-toggle navList-toggle" data-collapsible="navList-category-{{id}}"><i class="icon navList-action-moreIcon" aria-hidden="{{#if id '==' ../../../../category.id}}true{{else}}false{{/if}}"><svg><use xlink:href="#icon-chevron-down" /></svg></i></a>
+                                        <ul class="navList-childList" id="navList-category-{{id}}">
+                                            {{#each children}}
+                                                <li class="navList-childList-item">
+                                                    <a class="navList-childList-action navList-action{{#if id '==' ../../../../../category.id}} is-current{{/if}}" href="{{url}}">{{name}}</a>
+                                                </li>
+                                            {{/each}}
+                                        </ul>
+                                    {{else}}
+                                        <a class="navList-subMenu-action navList-action{{#if id '==' ../../../../category.id}} is-current{{/if}}" href="{{url}}">{{name}}</a>
+                                    {{/if}}
+                                </li>
+                            {{/each}}
+                        </ul>
+                    {{else}}
+                        <a class="navList-action{{#if id '==' ../../category.id}} is-current{{/if}}" href="{{url}}" alt="{{name}}" title="{{name}}">{{name}}</a>
+                    {{/if}}
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+
+    {{/unless}}
+
+    <div class="sidebar-region">
+        {{{region name="sidebar_widgets--global"}}}
+    </div>
+</nav>
+
+
+

@@ -1,0 +1,19 @@
+<div class="navPage-subMenu navPage-subMenu-horizontal third-level-flyout" id="navPages-{{id}}" aria-hidden="true" tabindex="-1">
+    <ul class="navPage-subMenu-list">
+        {{#each children}}
+            <li class="navPage-subMenu-item-child third-level">
+                {{#if children}}
+                    <a class="navPage-subMenu-action navPages-action navPages-action-depth-max has-subMenu{{#if is_active}} activePage{{/if}}" href="{{url}}">
+                        {{name}}
+                    </a>
+                    {{> components/common/navigation-dropdown-fourth-level-plus}}
+                {{else}}
+                    <a class="navPage-subMenu-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
+                {{/if}}
+            </li>
+        {{/each}}
+        <li class="navPage-subMenu-item-paren view-all">
+            <a class="navPage-subMenu-action navPages-action navPages-action-depth-max view-all" href="{{url}}">View All</a>
+        </li>
+    </ul>
+</div>

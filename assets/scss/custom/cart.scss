@@ -1,0 +1,107 @@
+.cart-header {
+  &-item {
+    font-size: 11px;
+    font-weight: 700;
+    min-height: 41px;
+    padding: 10px 20px 9px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-bottom: 1px solid #d0d0d0;
+    background: #e8e3e3;
+  }
+}
+
+.cart-list {
+  .cart-item {
+    .form-increment {
+      .button.button--icon[data-action="dec"] {
+        border-right: 1px solid #d7d7d7 !important;
+      }
+
+      .button.button--icon[data-action="inc"] {
+        border-left: 1px solid #d7d7d7 !important;
+      }
+
+      .icon,
+      svg {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+    }
+    .form-input--incrementTotal {
+      border: none;
+    }
+
+    .cart-item-info {
+        strong.cart-item-value {
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+    }
+  }
+}
+
+.cart-totals {
+    .cart-total-grandTotal {
+        span {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+    }
+}
+
+.cart-actions {
+    .button.button--primary {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+.products-upsell {
+  .slick-track {
+  display: flex !important;
+}
+
+.slick-slide {
+  height: auto !important;
+  display: flex !important;
+  flex-direction: column;
+}
+
+/* If Slick wraps your content in a div, target that too */
+.slick-slide > div {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+}
+}
+
+/* #related-products-upsell carries .productGrid (display:flex, from
+   custom/product-card.scss) but Slick also turns this exact element into
+   .slick-slider and inserts .slick-list as a direct child of it. A block
+   div normally fills 100% of its parent's width, but as a flex item with
+   no explicit width/flex-grow it instead shrinks to its own content -
+   confirmed by measuring: #related-products-upsell was 1272px while
+   .slick-list was only 420px. Slick then bakes that wrong width into every
+   slide (slideWidth = listWidth / slidesToShow) at init. Opt this
+   container out of .productGrid's flex layout so Slick's own structure
+   controls sizing. */
+#related-products-upsell.productGrid {
+  display: block;
+
+  .slick-list,
+  .slick-track {
+    width: 100%;
+  }
+
+  /* .product also keeps its .productGrid width (25-33%) after being moved
+     into a slick slide that's already sized to that same percentage of
+     the track - reset it so the card fills its slide instead of
+     shrinking again inside it. */
+  .product {
+    width: 100%;
+    max-width: 100%;
+    flex: 1 1 auto;
+  }
+}

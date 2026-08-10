@@ -1,0 +1,6 @@
+<h2 class="page-heading showcase-products">{{lang 'products.featured' }}</h2>
+{{#if settings.data_tag_enabled}}
+    {{> components/products/carousel settings=../settings products=products list="Featured Products"}}
+{{else}}
+    {{> components/products/carousel products=products}}
+{{/if}}

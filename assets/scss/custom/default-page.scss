@@ -1,0 +1,363 @@
+.body.page [data-sub-layout],
+.body.page [data-sub-layout-container] {
+    border: none;
+}
+
+@media only screen and (max-width: 1200px) {
+	.page-emf-sounds [data-layout-name='Layout'] {
+		flex-direction: column;
+
+		[data-sub-layout] {
+			margin-left: auto;
+			margin-right: auto;
+			align-items: center;
+		}
+	}
+
+	.page--information {
+		.navBar {
+			.navBar-item {
+				width: 100%;
+			}
+		}
+	}
+}
+
+.__mce_add_custom__ {
+	aspect-ratio: 1/1;
+	object-fit: contain;
+}
+
+@media only screen and (max-width: 991px) {
+	.__mce_add_custom__ {
+		display: block !important;
+
+		& + * {
+			display: block !important;
+			width: 100% !important;
+		}
+	}
+
+	.__mce_add_custom__.position-c {
+		float: unset !important;
+	}
+}
+
+.Rob.Metzinger {
+	@media only screen and (max-width: 400px) {
+		.__mce_add_custom__ {
+			width: 100% !important;
+			display: block !important;
+			max-width: unset !important;
+		}
+	}
+}
+
+.page-medical-professionals {
+	.__mce_add_custom__ {
+		width: 100% !important;
+		max-width: 120px !important;
+		float: unset !important;
+		display: block !important;
+
+		& + * {
+			display: block !important;
+			width: 100% !important;
+			margin-top: 20px;
+		}
+
+		@media only screen and (max-width: 600px) {
+			max-width: 80px !important;
+		}
+	}
+}
+
+.page-emf-safety-tips {
+	counter-reset: section;
+	h3 {
+		counter-increment: section;
+
+		&::before {
+			color: #01a950;
+			position: relative;
+			width: 46px;
+			height: 46px;
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+			border: 1px solid #01a950;
+			border-radius: 50px;
+			margin-right: 16px;
+			content: counter(section);
+		}
+	}
+
+	h1 {
+		& > img {
+			display: none;
+		}
+		
+		a {
+			@media (max-width: 553px) {
+				max-width: fit-content !important;
+				display: block;
+
+				img {
+					float: none !important;
+					margin: 0 !important;
+				}
+			}
+		}
+	}
+}
+
+.page-web-links {
+	counter-reset: section;
+
+	.page-content > p {
+		counter-increment: section;
+
+		&::before {
+			color: #01a950;
+			position: relative;
+			width: 46px;
+			height: 46px;
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+			border: 1px solid #01a950;
+			border-radius: 50px;
+			margin-right: 16px;
+			content: counter(section);
+		}
+	}
+}
+
+.page-medical-professionals {
+	.page-content {
+		h1 + p::before {
+			display: none;
+		}
+
+		& > h2 + p {
+			counter-reset: section;
+			counter-increment: section;
+		}
+
+		& > p:not(:first-of-type) {
+			counter-increment: section;
+			display: grid;
+			grid-template-columns: 46px 1fr;
+			gap: 16px;
+
+			&::before {
+				color: #01a950;
+				position: relative;
+				width: 46px;
+				height: 46px;
+				display: inline-flex;
+				justify-content: center;
+				align-items: center;
+				border: 1px solid #01a950;
+				border-radius: 50px;
+				margin-right: 16px;
+				content: counter(section);
+			}
+		}
+
+		p:last-of-type::before {
+			display: none;
+		}
+	}
+}
+
+.page-emf-hazards .page-content h2 + ul {
+	counter-reset: section;
+	list-style: none;
+	margin-left: 0px;
+
+	> li {
+		counter-increment: section;
+    font-size: 20px;
+    font-weight: bold;
+
+    ul {
+      font-weight: normal;
+      font-size: initial;
+      margin-bottom: 21px;
+      list-style: none;
+			margin-left: 0;
+    }
+
+		&::before {
+			content: counter(section);
+			color: #01a950;
+			position: relative;
+			width: 46px;
+			height: 46px;
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+      font-family: "Inter", sans-serif;
+			border: 1px solid #01a950;
+			border-radius: 50px;
+      font-weight: 600;
+      font-size: 18px;
+			margin-right: 16px;
+		}
+	}
+}
+
+@media only screen and (min-width: 767px) and (max-width: 1200px) {
+	.row.page {
+		justify-content: center;
+	}
+	.col-lg-9 {
+		max-width: 100% !important;
+	}
+}
+
+@media only screen and (max-width: 991px) {
+	.page-emf-exposure-rf-exposure-guidelines {
+		.__mce_add_custom__ {
+			height: 100px;
+			width: 120px;
+			float: left !important;
+			margin: 15px 10px !important;
+		}
+	}
+}
+
+
+ul.yt-accordion {
+	list-style: none;
+	margin: 0;
+}
+ul.yt-accordion .yt-accordion-group {
+	margin-bottom: 10px;
+}
+ul.yt-accordion .yt-accordion-group .accordion-heading {
+	font-weight: 500;
+	color: #333;
+	font-size: 15px;
+	transition: all 0.2s;
+	padding: 9px 15px;
+	margin: 0;
+	line-height: 22px;
+	cursor: pointer;
+	background: #f1f1f1;
+	text-transform: capitalize;
+	position: relative;
+	padding-left: 40px;
+}
+ul.yt-accordion .yt-accordion-group .accordion-heading .fa {
+	position: absolute;
+	opacity: 0;
+	top: 13px;
+	left: 16px;
+}
+
+	ul.yt-accordion
+	.yt-accordion-group
+	.accordion-heading:hover {
+	background: #01a950;
+	color: #fff;
+}
+
+	ul.yt-accordion
+	.yt-accordion-group
+	.accordion-heading.active {
+	background: #01a950;
+	color: #fff;
+}
+
+	ul.yt-accordion
+	.yt-accordion-group
+	.accordion-heading.active:before {
+	border: 8px solid #01a950;
+	border-color: #01a950 transparent transparent transparent;
+	content: '';
+	position: absolute;
+	top: 100%;
+	left: 30px;
+}
+ul.yt-accordion .yt-accordion-inner {
+	padding: 15px 15px 10px 15px;
+	background: #f1f1f1;
+}
+
+
+	ul.yt-accordion
+	.yt-accordion-group
+	.accordion-heading:hover
+	.fa,
+
+	ul.yt-accordion
+	.yt-accordion-group
+	.accordion-heading.active
+	.fa {
+	opacity: 1;
+}
+
+ul.yt-accordion .yt-accordion-group .accordion-heading img {
+	width: 14px;
+	filter: invert(1);
+}
+
+
+	ul.yt-accordion
+	.yt-accordion-group
+	.accordion-heading:hover
+	a {
+	color: #fff;
+}
+
+ul.yt-accordion .yt-accordion-group .accordion-heading a {
+	color: #333;
+}
+
+ul.yt-accordion .yt-accordion-group .accordion-heading a {
+	text-decoration: underline;
+}
+
+
+	ul.yt-accordion
+	.yt-accordion-group
+	.accordion-heading.active
+	a {
+	color: #fff;
+}
+
+
+.page .page.content {
+	h1 {
+		strong {
+			white-space: unset;
+		}
+
+		@media (min-width: 350px) and (max-width: $screen-medium) {
+			strong {
+				white-space: nowrap;
+			}
+		}
+	}
+	
+// 	h1 {
+// 		display: flex;
+// 		flex-direction: column-reverse;
+
+// 		a {
+// 			width: fit-content;
+// 		}
+// 		img {
+// 			margin: 0 !important; // 20px
+// 		}
+// 	}
+
+// 	@media (min-width: $screen-medium) {
+// 		h1 {
+// 			flex-direction: row-reverse;
+// 			justify-content: left;
+// 		}
+// 	}
+}

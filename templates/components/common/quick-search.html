@@ -1,0 +1,19 @@
+<div class="container">
+  <a href="#" class="quickSearch-mobileToggle" alt="Submit Search">
+      <span class="mobileMenu-toggleIcon"></span>
+  </a>
+    <form class="form" action="{{urls.search}}">
+        <fieldset class="form-fieldset">
+            <div class="form-field">
+                <label class="is-srOnly" for="search_query">{{lang "search.quick_search.input_label"}}</label>
+                <input class="form-input" data-search-quick name="search_query" id="search_query" data-error-message="{{lang 'search.error.empty_field'}}" placeholder="{{lang 'search.quick_search.input_placeholder'}}" autocomplete="off">
+                <!-- <input class="button button--primary form-prefixPostfix-button--postfix" type="submit" value=""><svg class="header-icon search-icon"><use xlink:href="#icon-search"></use></svg> -->
+            </div>
+        </fieldset>
+        <div class="search-icon submit">
+          <input alt="Submit Search" class="button button--primary form-prefixPostfix-button--postfix" type="submit" value="">
+          <svg class="header-icon search-icon" title="submit" alt="submit"><use xlink:href="#icon-search"></use></svg>
+        </div>
+    </form>
+    <section class="quickSearchResults" data-bind="html: results"></section>
+</div>

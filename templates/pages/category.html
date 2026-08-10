@@ -1,0 +1,94 @@
+---
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.categorypage_products_per_page}}
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+{{#if category.image}}
+<div class="category-main-image">
+    {{> components/common/responsive-img
+        image=category.image
+        fallback_size=theme_settings.zoom_size
+        lazyload=theme_settings.lazyload_mode
+    }}
+</div>
+{{/if}}
+
+<div class="page category">
+    {{!--
+    {{#if category.faceted_search_enabled}}
+        <aside class="page-sidebar" id="faceted-search-container">
+            <span id="close-sidebar" class=" fa fa-times"></span>
+            {{> components/custom/category/sidebar}}
+        </aside>
+    {{else if category.subcategories}}
+        <aside class="page-sidebar" id="faceted-search-container">
+            <span id="close-sidebar" class=" fa fa-times"></span>
+            {{> components/custom/category/sidebar}}
+        </aside>
+    {{else if category.shop_by_price}}
+        {{#if theme_settings.shop_by_price_visibility}}
+             <aside class="page-sidebar" id="faceted-search-container">
+                <span id="close-sidebar" class=" fa fa-times"></span>
+                {{> components/custom/category/sidebar}}
+            </aside>
+        {{/if}}
+    {{/if}}
+    --}}
+    <aside class="page-sidebar" id="faceted-search-container">
+                <span id="close-sidebar" class=" fa fa-times"></span>
+                {{> components/custom/category/sidebar}}
+            </aside>
+
+    <main class="page-content" id="product-listing-container">
+      <h1 class="page-heading">{{category.name}}</h1>
+      {{{region name="category_below_header"}}}
+      {{#if category.description}}
+                <div class="category-info__desc truncated">{{{category.description}}}</div>
+                <button id="read-more-description" class="morelink">Read More</button>
+
+                <script>
+                    (function() {
+                        const description = document.querySelector('.category-info__desc');
+                        const readMoreButton = document.getElementById('read-more-description');
+
+                        readMoreButton.addEventListener('click', () => {
+                            if (description.classList.contains('truncated')) {
+                                description.classList.remove('truncated');
+                                readMoreButton.innerText = 'Read Less';
+                            } else {
+                                description.classList.add('truncated');
+                                readMoreButton.innerText = 'Read More';
+                            }
+                        });
+                    })();
+                </script>
+                {{/if}}
+      <!--LONE STAR CUSTOM SUBCATEGORY GRID-->
+        {{#if category.products}}
+            {{> components/category/product-listing settings=../settings}}
+        {{else}}
+            <p>{{lang 'categories.no_products'}}</p>
+        {{/if}}
+        {{{region name="category_below_content"}}}
+    </main>
+
+        <a class="navUser-action navUser-item--compare bottom" href="{{urls.compare}}" data-compare-nav>{{lang 'Compare Selected'}}<span class="countPill countPill--positive countPill--alt compare"></span></a>
+
+</div>
+
+{{/partial}}
+{{> layout/base}}

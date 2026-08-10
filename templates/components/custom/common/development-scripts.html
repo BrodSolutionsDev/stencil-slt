@@ -1,0 +1,21 @@
+{{#if in_development}}
+<script type="text/javascript">  window.freshclick_filter_configurations = "{\"search\":{\"is_preview_mode\":\"0\",\"is_search\":\"1\",\"search_container\":\"input[name=search_query]\",\"is_search_ajax\":\"1\",\"filter_color\":\"01A950\",\"login_for_price\":\"0\",\"login_for_price_text\":\"\",\"search_start\":\"2\",\"column_type\":\"2\",\"enterprise_search_style\":\"1\",\"is_auto_search\":\"1\",\"auto_search_wait_time\":\"5\",\"is_trending_now\":\"0\",\"is_suggested_search\":\"0\",\"suggested_array\":[],\"is_recent_search\":\"0\",\"recent_search_language\":\"Recent Searches\",\"trending_now_language\":\"Trending Searches\",\"trending_now_search_count\":\"5\",\"trending_array\":[],\"search_category\":\"false\",\"search_js\":null}}"; </script>
+<script defer src="//filter.freshclick.co.uk/assets/client/freshclick-filter.js?202511140806" data-site="rwbd9uo0md" data-customer-group="3" data-cat="" data-brand="" data-channel-id="1" id="fresh_filter"></script>
+<script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"></script>
+<script type="text/javascript">
+document.sezzleConfig = { 
+"configGroups": 
+[ 
+{ "targetXPath": '.productView-price/.price-section/.price--withoutTax', 
+"splitPriceElementsOn": '-' 
+}, 
+{ "targetXPath": '.productView-price/.price-section/.price--withTax',
+ "splitPriceElementsOn": ' - '
+}, 
+{ "targetXPath": '.cart-total-grandTotal/SPAN-0', 
+"renderToPath": '../..', 
+"urlMatch": "cart" }
+]
+  }</script>
+  <script src="https://widget.sezzle.com/v1/javascript/price-widget?uuid=ce9a4794-26c9-45f7-aac2-753a907fa223"></script>
+{{/if}}

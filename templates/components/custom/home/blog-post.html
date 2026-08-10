@@ -1,0 +1,31 @@
+<div class="home-blogPost">
+  <div class="home-blogPost--content">
+    <h3 class="home-blogPost--title">
+      <a href="{{url}}">{{title}}</a>
+    </h3>
+    <p class="home-blogPost--summary">{{summary}}</p>
+    <div class="home-blogPost--author">
+      <span class="icon">
+          <svg>
+              <use xlink:href="#icon-user"></use>
+          </svg>
+      </span>{{author}}</div>
+    <div class="home-blogPost--date">
+      <span class="icon">
+          <svg>
+              <use xlink:href="#icon-clock"></use>
+          </svg>
+      </span>{{date_published}}</div>
+    <a href="{{url}}" class="home-blogPost--link">
+      <span class="icon">
+          <svg>
+              <use xlink:href="#icon-triangle-right"></use>
+          </svg>
+      </span>Read More</a>
+  </div>
+  <div class="home-blogPost--thumbnail">
+    <a href="{{url}}">
+      <img src="{{getImage thumbnail 'gallery_size'}}" loading="lazy">
+    </a>
+  </div>
+</div>

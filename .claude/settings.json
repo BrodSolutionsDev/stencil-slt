@@ -1,0 +1,18 @@
+{
+  "env": {
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "70"
+  },
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Read(./node_modules/**)",
+      "Read(./.git/**)",
+      "Read(./build/**)",
+      "Read(./dist/**)",
+      "Read(./assets/dist/**)",
+      "Read(./secrets.stencil.json)"
+    ]
+  }
+}

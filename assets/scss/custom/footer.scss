@@ -1,0 +1,243 @@
+.newsletter-subscription-section {
+  border: none;
+
+  .newsletter {
+    flex-direction: column;
+    justify-content: center;
+
+    .left {
+      max-width: 470px;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .right {
+      flex: 1;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .newsletter-heading {
+      text-align: center;
+      font-size: $sixteen-px;
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+
+    .form-prefixPostfix {
+      border: 2px solid stencilColor("button--default-backgroundColor");
+      border-radius: 99999px;
+      flex-wrap: nowrap;
+
+      .form-input {
+        border-top-left-radius: 99999px;
+        border-bottom-left-radius: 99999px;
+        border: none;
+        border-right: 2px solid stencilColor("button--default-backgroundColor");
+        flex: 1;
+      }
+
+      .button {
+        margin: 0;
+        border-top-right-radius: 99999px;
+        border-bottom-right-radius: 99999px;
+        max-width: 145px;
+      }
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    .newsletter {
+      flex-direction: row;
+      max-width: 800px !important;
+
+      .right {
+        max-width: unset;
+      }
+    }
+  }
+
+  @media only screen and (min-width: 1024px) {
+    .newsletter {
+      max-width: 800px !important;
+    }
+  }
+}
+
+.footer {
+  border: none;
+  padding-bottom: 57px;
+
+  .footer-top {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 50px;
+
+    .header-logo-image-container {
+      height: 86px;
+    }
+
+    .header-logo-image {
+      padding: 0 48px;
+      background-color: #fff;
+      z-index: 2;
+      position: relative;
+      max-height: 100%;
+      width: 214px;
+      height: 86px;
+      -o-object-fit: contain;
+      object-fit: contain;
+    }
+
+    &::before {
+      content: "";
+      display: block;
+      background: stencilColor("color-primary");
+      height: 2px;
+      position: absolute;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      width: 100%;
+      z-index: 1;
+    }
+  }
+
+  .global_links {
+    margin: 0 0 55px;
+
+    p {
+      display: flex;
+      gap: 14px;
+      text-transform: uppercase;
+      flex-wrap: wrap;
+      justify-content: center !important;
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .footer-info {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    i {
+      transform: translate(-10px, 3px);
+      background-color: stencilColor("footer-backgroundColor");
+      color: stencilColor("footer-textColor");
+      font-size: 22px;
+      margin-right: 0;
+      fill: none;
+    }
+
+    .footer-info--half {
+      margin: 0;
+    }
+
+    .footer-info-list {
+      li {
+        padding: 14px 10px;
+        font-size: 1rem;
+        
+        a {
+          padding-bottom: 0;
+        }
+      }
+    }
+
+    [data-section-type="storeInfo"] {
+      li {
+        text-align: right;
+        padding-right: 0;
+
+        p {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  address {
+    font-size: 1rem;
+    text-align: right;
+  }
+
+  .social-icons {
+    display: block;
+    width: fit-content !important;
+    margin: 0 auto;
+
+    .footer-info-heading {
+      display: none;
+    }
+
+    .socialLinks {
+      width: fit-content;
+      margin: 0 auto;
+
+      &-item {
+        padding: 0 0.25rem;
+      }
+    }
+  }
+
+  .footer-copyright {
+    width: 100%;
+    background: stencilColor("color-primary");
+    padding: 14px;
+    max-width: 100%;
+    
+    .powered-by {
+      color: stencilColor("color-textBase");
+      text-transform: uppercase;
+      font-size: 14px;
+
+      a {
+        color: stencilColor("color-textBase");
+
+        &:hover {
+          color: #ffffff !important;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .footer-info {
+      > .footer-info--half:first-of-type {
+        display: none;
+      }
+
+      .footer-info--half {
+        width: 100%;
+      }
+      [data-section-type="storeInfo"] li {
+      text-align: center;
+    }
+    }
+
+    address {
+      text-align: center;
+    }
+
+    
+  }
+
+  @media only screen and (min-width: $screen-medium) {
+    padding-bottom: 0;
+  }
+
+  @media only screen and (orientation: landscape) {
+    padding-bottom: 0;
+  }
+}
+
+[data-content-region="footer-webPages--global"] {
+  a {
+    text-decoration: none;
+  }
+}

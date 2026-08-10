@@ -1,0 +1,191 @@
+.productGrid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  row-gap: 2rem;
+
+  .product {
+    flex: 0 0 25%;
+    max-width: 25%;
+    overflow: unset;
+
+    @media only screen and (max-width: 992px) {
+        flex: 0 0 33%;
+        max-width: 33%;
+    }
+
+    @media only screen and (max-width: 768px) {
+        flex: unset;
+        width: 100% !important;
+        max-width: 100%;
+    }
+  }
+
+  
+}
+    .card {
+      height: 100%;
+      border: 1px solid rgb(222, 222, 222);
+      margin-bottom: 0;
+      position: relative;
+      padding: 10px;
+
+      .card-figure,
+      .card-figure a,
+      .card-img-container,
+      .card-image {
+        aspect-ratio: 1/1;
+        object-fit: contain;
+        height: auto;
+        margin: 0;
+        width: 100%;
+      }
+
+      .card-figure {
+        .sale-flag-side {
+          background: #e40000;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0;
+
+          &:hover {
+            background: #e40000;
+          }
+        }
+      }
+
+      .card-img-container::after {
+        display: none;
+      }
+
+      .card-body {
+        // position: relative;
+        padding-bottom: 3rem;
+    
+        .card-title,
+        .card-text {
+            font-size: $sixteen-px;
+            color: stencilColor('color-textBase');
+        }
+
+        .card-figcaption-new {
+          display: none;
+          justify-content: center;
+          position: absolute;
+          bottom: 1rem;
+          left: 0;
+          width: 100%;
+
+          .card-figcaption-body {
+            display: flex !important;
+            flex-direction: row-reverse;
+            gap: 0.5rem;
+            justify-content: center;
+            align-items: center;
+            top: unset;
+            transform: unset;
+
+            .button {
+              background: stencilColor("button--default-backgroundColor");
+              border: 1px solid stencilColor("button--default-backgroundColor") !important;
+              color: stencilColor("button--default-color");
+              border-radius: 99999px;
+              padding: 0.5rem 1rem;
+              height: fit-content;
+              font-size: 1rem;
+              font-style: normal;
+              margin-bottom: 0;
+              width: unset;
+
+              &:hover {
+                background: stencilColor("button--default-color");
+                color: stencilColor("button--default-backgroundColor");
+              }
+            }
+
+            .wishlist {
+              height: 35px;
+              .action-link {
+                background: stencilColor("button--default-color");
+                border: 1px solid
+                  stencilColor("button--default-backgroundColor") !important;
+                width: 32px;
+                height: 32px;
+                border-radius: 32px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                i {
+                  color: stencilColor(
+                    "button--default-backgroundColor"
+                  ) !important;
+                }
+                &:hover {
+                  background: stencilColor("button--default-backgroundColor");
+
+                  i {
+                    color: stencilColor("button--default-color") !important;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &:hover {
+        .card-figcaption-new {
+          display: flex;
+        }
+      }
+    }
+
+    @media only screen and (max-width: 1200px) {
+        .card {
+            .card-body {
+                padding-bottom: 0;
+
+                .card-figcaption-new {
+                    display: none !important;
+                }
+
+                
+            }
+
+            .card-figcaption.mobile {
+                    .card-figcaption-body {
+
+                    
+                    .button {
+              background: stencilColor("button--default-backgroundColor");
+              border: 1px solid stencilColor("button--default-backgroundColor") !important;
+              color: stencilColor("button--default-color");
+              border-radius: 99999px;
+              padding: 0.5rem 1rem;
+              height: fit-content;
+              font-size: $sixteen-px;
+              font-style: normal;
+              margin-bottom: 0;
+
+              &:hover {
+                background: stencilColor("button--default-color");
+                color: stencilColor("button--default-backgroundColor");
+              }
+            }
+        }
+                }
+
+            &:hover {
+                .card-body {
+                    .card-figcaption-new {
+                        display: none !important;
+                    }
+                }
+            }
+        }
+    }
+
+    
+  

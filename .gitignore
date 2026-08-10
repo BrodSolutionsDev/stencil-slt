@@ -1,0 +1,28 @@
+# Secrets
+secrets.stencil.json
+
+# Dependencies
+node_modules
+
+# Stencil build artifacts
+parsed
+stencil_context
+assets/dist
+
+# OS
+.DS_Store
+
+# Logs
+npm-debug.log*
+pnpm-debug.log*
+yarn-error.log*
+
+# Env
+.env
+.env.local
+
+# Jest
+coverage/
+
+# Claude Code local overrides
+.claude/settings.local.json
