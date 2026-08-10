@@ -1,0 +1,75 @@
+.page.content {
+    container-name: pageContent;
+    container-type: inline-size;
+    line-height: 1.8 !important;
+
+    @media (min-width: 350px) and (max-width: 1201px) {
+        h1 strong {
+            white-space: unset !important;
+        }
+    }
+
+    .__mce_add_custom__ {
+        margin-bottom: 1rem;
+    }
+
+    .yt-accordion {
+        clear: both;
+    }
+
+    hr {
+        border: solid #e5e5e5;
+        border-width: 1px 0 0;
+        clear: both;
+        height: 0;
+        margin: 2.03846rem 0 1.96154rem;
+    }
+
+    iframe[allowfullscreen="allowfullscreen"] {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 16/9 !important;
+        max-width: 800px !important;
+    }
+}
+
+.page-request-slt-promotional-material {
+    h1 {
+        line-height: 1.2;
+    }
+
+    @media (max-width: 576px) {
+        h1 {
+            font-size: 20px;
+        }
+    }
+}
+
+.pdf-iframe:has(iframe) {
+    aspect-ratio: 18/9;
+
+    iframe {
+        max-width: 100% !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    &:has(iframe[allowfullscreen="allowfullscreen"]) {
+        aspect-ratio: 16/9;
+        max-width: 800px !important;
+    }   
+}
+
+@container pageContent (width <= 510px) {
+    .__mce_add_custom__ {
+        float: unset !important;
+        margin-left: 0 !important;
+        aspect-ratio: unset !important;
+    }
+}
+
+.new-devide {
+    @media (max-width: 576px) {
+        flex-flow: column;
+    }
+}

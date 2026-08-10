@@ -115,7 +115,17 @@
 	counter-reset: section;
 
 	.page-content > p {
-		counter-increment: section;
+
+		&:not(:first-of-type) {
+			counter-increment: section;
+		}
+
+		&:first-of-type,
+		&:last-of-type {
+			&::before {
+				display: none;
+			}
+		}
 
 		&::before {
 			color: #01a950;
@@ -135,8 +145,16 @@
 
 .page-medical-professionals {
 	.page-content {
-		h1 + p::before {
-			display: none;
+		h1 + p {
+			&::before {
+				display: none !important;
+			}
+
+			img {
+				height: 150px;
+				width: 150px !important;
+				max-width: unset;
+			}
 		}
 
 		& > h2 + p {
