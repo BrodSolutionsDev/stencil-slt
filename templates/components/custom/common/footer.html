@@ -1512,23 +1512,23 @@ window.addEventListener("resize", function() {
 
 
   // <!-- GET HEIGHT OF TALLEST PAGE IN DROPDOWN AND SET THE SIBLINGS TO MATCH - FOR PAGINATOR TO WORK -->
-    $(window).on("load", function(){
-           $('article.blog').each(function(i) {
-           var maxHeight = 0;
-           maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
-           console.log(maxHeight);
-           $('article.blog').height(maxHeight);
-         });
-   });
-   // FOR WINDOW DRAGGERS & THEME EDITOR RESPONSIVE BUTTONS
-   window.addEventListener("resize", function() {
-     $('article.blog').each(function(i) {
-     var maxHeight = 0;
-     maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
-     console.log(maxHeight);
-     $('article.blog ').height(maxHeight);
-     });
-   }, 200);
+  //   $(window).on("load", function(){
+  //          $('article.blog').each(function(i) {
+  //          var maxHeight = 0;
+  //          maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
+  //          console.log(maxHeight);
+  //          $('article.blog').height(maxHeight);
+  //        });
+  // });
+  // // FOR WINDOW DRAGGERS & THEME EDITOR RESPONSIVE BUTTONS
+  // window.addEventListener("resize", function() {
+  //   $('article.blog').each(function(i) {
+  //   var maxHeight = 0;
+  //   maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
+  //   console.log(maxHeight);
+  //   $('article.blog ').height(maxHeight);
+  //   });
+  // }, 200);
 </script>
 
 <script type="text/javascript">
