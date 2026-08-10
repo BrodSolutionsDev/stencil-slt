@@ -226,6 +226,31 @@
 	}
 }
 
+.page-emf-symptoms {
+	counter-reset: section;
+
+	h3 {
+		counter-increment: section;
+
+		&::before {
+			content: counter(section);
+			color: #01a950;
+			position: relative;
+			width: 46px;
+			height: 46px;
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+      font-family: "Inter", sans-serif;
+			border: 1px solid #01a950;
+			border-radius: 50px;
+      font-weight: 600;
+      font-size: 18px;
+			margin-right: 16px;
+		}
+	}
+}
+
 @media only screen and (min-width: 767px) and (max-width: 1200px) {
 	.row.page {
 		justify-content: center;
