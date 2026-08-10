@@ -32,25 +32,25 @@ category:
     {{#if category.faceted_search_enabled}}
         <aside class="page-sidebar" id="faceted-search-container">
             <span id="close-sidebar" class=" fa fa-times"></span>
-            {{> components/custom/category/sidebar}}
+            {{> components/custom/category/sidebar hide_shop=1}}
         </aside>
     {{else if category.subcategories}}
         <aside class="page-sidebar" id="faceted-search-container">
             <span id="close-sidebar" class=" fa fa-times"></span>
-            {{> components/custom/category/sidebar}}
+            {{> components/custom/category/sidebar hide_shop=1}}
         </aside>
     {{else if category.shop_by_price}}
         {{#if theme_settings.shop_by_price_visibility}}
              <aside class="page-sidebar" id="faceted-search-container">
                 <span id="close-sidebar" class=" fa fa-times"></span>
-                {{> components/custom/category/sidebar}}
+                {{> components/custom/category/sidebar hide_shop=1}}
             </aside>
         {{/if}}
     {{/if}}
     --}}
     <aside class="page-sidebar" id="faceted-search-container">
                 <span id="close-sidebar" class=" fa fa-times"></span>
-                {{> components/custom/category/sidebar}}
+                {{> components/custom/category/sidebar hide_shop=1}}
             </aside>
 
     <main class="page-content" id="product-listing-container">

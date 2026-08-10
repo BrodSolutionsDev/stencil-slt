@@ -22,6 +22,7 @@
     {{/if}}
     --}}
 
+    {{#unless hide_shop}}
     <div class="sidebarBlock sidebar--categories">
         <h5 class="sidebarBlock-heading"><i class="far fa-gem"></i> Shop</h5>
         <div class="block-content clearfix">
@@ -66,6 +67,7 @@
             </ul>
         </div>
     </div>
+    {{/unless}}
 
     <div class="sidebar-region">
         {{{region name="sidebar_widgets--global"}}}
