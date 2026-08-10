@@ -3,8 +3,53 @@
 // instead of $screen-large (1261px). Scoped to .header-2 to avoid affecting the
 // original header. Mobile/tablet base styles come from header.scss globally.
 
+// Safari-only fix: .heroCarousel has no position/z-index of its own, but its
+// Slick track (components/vendor/slick/_slick.scss) sets `perspective: 1000px`
+// (added there as an older iOS Safari transition fix) and Slick's autoplay JS
+// keeps applying an inline `transform: translate3d(...)` to that same element.
+// perspective + transform promotes .slick-track to its own Safari compositing
+// layer, and Safari sometimes paints that layer above unrelated content —
+// including the header's open .navPage-subMenu — regardless of z-index, once
+// autoplay kicks in after load. Drop perspective (backface-visibility alone
+// still smooths the transform) and isolate the carousel's own stacking context
+// so nothing inside it can visually escape above the header again.
+.heroCarousel {
+	isolation: isolate;
+
+	.slick-track {
+		perspective: none;
+	}
+}
+
+// Safari-only fix, part 2: even with the carousel's stacking context contained
+// above, Safari can still mis-order a GPU-composited layer (Slick's .slick-track,
+// which gets a live `transform: translate3d(...)` from its own JS) against
+// regular painted content — even when the painted content's z-index is spec-
+// correct and higher. Safari's compositor only reliably respects z-index when
+// BOTH sides are actual composited layers. Force the dropdown itself onto its
+// own layer so Safari compares two composited layers instead of composited vs.
+// non-composited. position: absolute already means nothing inside a dropdown
+// needs viewport-relative position: fixed, so this carries no side effects.
+.navPage-subMenu {
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+}
+
 .navPages-container {
 	display: flex;
+
+	// Safari-only fix: -webkit-overflow-scrolling: touch promotes this container to
+	// its own compositing layer, and the core stencil styles cap it at z-index: 0
+	// when open (see components/stencil/navPages/_navPages.scss). That traps
+	// .navPage-subMenu's z-index: 999999 inside a stacking context capped at 0, so
+	// Safari paints other positioned page content on top of the open submenu even
+	// though other browsers don't. The property is also obsolete (Safari has had
+	// native momentum scrolling since iOS 13), so it's safe to drop.
+	-webkit-overflow-scrolling: auto;
+
+	&.is-open {
+		z-index: 999998;
+	}
 }
 
 .banners {
@@ -954,7 +999,7 @@ header div#menu,
 @media only screen and (max-width: $screen-medium) {
 	.filterSearchContainer {
 		left: 0 !important;
-		transform: translateY(10px) !important;
+		margin-top: 10px !important;
 		max-width: unset !important;
 		min-width: calc(100% + 56px) !important;
 	}
@@ -965,7 +1010,7 @@ header div#menu,
 		left: -1.5rem !important;
 		min-width: 100vw !important;
 		max-width: 100% !important;
-		transform: translateY(10px) !important;
+		top: 10px !important;
 		position: absolute;
 	}
 }
