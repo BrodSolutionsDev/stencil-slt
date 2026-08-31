@@ -21,7 +21,7 @@ export class VideoGallery {
     }
 
     setMainVideo() {
-        this.$player.attr('src', `//www.youtube.com/embed/${this.currentVideo.id}`);
+        this.$player.attr('src', `https://www.youtube-nocookie.com/embed/${this.currentVideo.id}`);
     }
 
     setActiveThumb() {

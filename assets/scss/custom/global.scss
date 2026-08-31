@@ -127,3 +127,7 @@ a {
 p:not([data-content-region] p) {
     line-height: unset;
 }
+
+.backtoTop {
+  display: none;
+}

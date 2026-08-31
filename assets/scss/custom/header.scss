@@ -15,8 +15,9 @@
 // so nothing inside it can visually escape above the header again.
 .heroCarousel {
 	isolation: isolate;
+	z-index: -1;
 
-	.slick-track {
+	.slick-track { 
 		perspective: none;
 	}
 }
@@ -47,9 +48,9 @@
 	// native momentum scrolling since iOS 13), so it's safe to drop.
 	-webkit-overflow-scrolling: auto;
 
-	&.is-open {
-		z-index: 999998;
-	}
+	// &.is-open {
+	// 	z-index: 999998; 
+	// } 
 }
 
 .banners {

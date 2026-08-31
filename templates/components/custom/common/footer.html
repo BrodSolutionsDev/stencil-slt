@@ -813,14 +813,14 @@ $(window).resize(function(){
      $(document).ready(function() {
     var flyoutHideTimer;
 
-    $('#menu .mega-cat-dropdown .navPages-item.top-level .navPages-action.second-level-parent').mouseleave(function() {
+    $('#menu .navPages-item.top-level .navPages-action.second-level-parent').mouseleave(function() {
         var $flyout = $(this).next('.navPage-subMenu-horizontal.second-level-flyout');
         flyoutHideTimer = setTimeout(function() {
             $flyout.removeClass('active-flyout').addClass('inactive-flyout');
         }, 250);
     });
 
-    $('#menu .mega-cat-dropdown .navPage-subMenu-horizontal.second-level-flyout')
+    $('#menu .navPage-subMenu-horizontal.second-level-flyout')
         .mouseenter(function() {
             clearTimeout(flyoutHideTimer);
         })
@@ -831,7 +831,7 @@ $(window).resize(function(){
 });
 
   $(document).ready(function() {
-      $('#menu .mega-cat-dropdown .navPages-item.top-level .navPages-action.second-level-parent').mouseenter(function() {
+      $('#menu .navPages-item.top-level .navPages-action.second-level-parent').mouseenter(function() {
           // remove any existing 'po' classes and add the 'przed' class back
           $('.active-parent-link').removeClass('active-parent-link').addClass('nonactive-parent-link');
           $('.active-flyout').removeClass('active-flyout').addClass('inactive-flyout');
@@ -844,7 +844,7 @@ $(window).resize(function(){
 
 
   $(document).ready(function() {
-      $('#menu .mega-cat-dropdown .navPages-item.top-level .navPages-action.single-level').mouseenter(function() {
+      $('#menu .navPages-item.top-level .navPages-action.single-level').mouseenter(function() {
           // remove any existing 'po' classes and add the 'przed' class back
           $('.active-parent-link').removeClass('active-parent-link').addClass('nonactive-parent-link');
           $('.active-flyout').removeClass('active-flyout').addClass('inactive-flyout');

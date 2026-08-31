@@ -105,3 +105,24 @@
     flex: 1 1 auto;
   }
 }
+
+.modal {
+  .previewCart {
+    .productView {
+      display: flex;
+    }
+
+    .productView-image {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+      width: 100%;
+      float: left;
+      display: flex;
+      flex-direction: column;
+
+      @media (min-width: 765px) {
+        width: 58.33333%;
+      }
+    }
+  }
+}
