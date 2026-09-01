@@ -14,12 +14,32 @@
 // still smooths the transform) and isolate the carousel's own stacking context
 // so nothing inside it can visually escape above the header again.
 .heroCarousel {
+	// Set position explicitly (rather than relying on Slick's JS adding
+	// .slick-slider's position: relative after init) so the isolation:isolate
+	// stacking context exists from first paint.
+	position: relative;
 	isolation: isolate;
-	z-index: -1;
 
-	.slick-track { 
+	.slick-track {
 		perspective: none;
 	}
+}
+
+// Only drop the carousel behind the header while a dropdown is actually
+// open — the one moment it can visually clash with it in Safari (see
+// above). Applying z-index: -1 unconditionally pushed the carousel below
+// *all* normal in-flow content on the page any time no menu was open
+// (negative z-index paints below normal-flow siblings, not just below the
+// header), which is what was eating clicks on the slide links.
+//
+// Keyed off a plain .nav-dropdown-open class that custom/home.js toggles on
+// <body>, rather than a `body:has(.navPage-subMenu.is-open)` selector —
+// Safari doesn't reliably re-run its hit-test pass when a :has() match
+// flips from a class change deep in the subtree, so links stayed dead
+// until an unrelated click forced a recompute. A JS-driven class toggle on
+// body doesn't have that staleness problem.
+body.nav-dropdown-open .heroCarousel {
+	z-index: -1;
 }
 
 // Safari-only fix, part 2: even with the carousel's stacking context contained
