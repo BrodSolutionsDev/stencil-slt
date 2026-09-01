@@ -131,3 +131,7 @@ p:not([data-content-region] p) {
 .backtoTop {
   display: none;
 }
+
+.dropdown-menu {
+  background: stencilColor("main-nav-backgroundColor");
+}
