@@ -31,6 +31,15 @@
                             {{/if}}
                         </span>
                     {{/if}}
+                    {{#if settings.show_product_reviews}}
+                    <span class="productView-reviewLink">
+                        <a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
+                           {{#unless is_ajax }}data-reveal-id="modal-review-form"{{/unless}}>
+                           {{lang 'products.reviews.new'}}
+                        </a>
+                    </span>
+                    {{> components/products/modals/writeReview}}
+                    {{/if}}
                 </div>
                 {{#if product.call_for_price}}
                     <p class="productView-price">

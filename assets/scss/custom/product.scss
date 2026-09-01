@@ -92,6 +92,11 @@
     padding: 1rem;
   }
 
+  &-reviewLink + &-reviewLink {
+    display: inline-block;
+    text-decoration: underline;
+  }
+
   &-socials {
     margin-left: -5px;
 
