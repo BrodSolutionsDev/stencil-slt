@@ -16,7 +16,7 @@
 
   &-title {
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 0.25rem;
   }
 
   &-brand {
@@ -31,7 +31,7 @@
     .price-flex {
       display: grid;
       grid-template-columns: min-content 1fr;
-      gap: 1rem;
+      gap: 0.25rem;
       grid-template-areas: 
       "sale base"
       "sezzle sezzle"
@@ -67,7 +67,7 @@
     flex-flow: column;
     justify-content: flex-end;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
   }
 
   &-rating {
