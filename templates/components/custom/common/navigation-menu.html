@@ -145,92 +145,76 @@
         </div>
         <div class="clear"></div>
     </div>
-    <div class="nav-right-fixed">
+    <div class="nav-right-fixed"> 
       <div class="nav-right">
-        <ul
-          class="navPages-list nav-page-list one {{#if theme_settings.navigation_design '!==' 'simple'}} navPages-list-depth-max{{/if}}">
-          {{#unless theme_settings.hide_category_navigation}}
-          {{#each categories}}
-          <li class="navPages-item top-level categories">
-            {{#if ../theme_settings.navigation_design '===' 'simple'}}
-            {{> components/common/navigation-list}}
-            {{/if}}
-            {{#if ../theme_settings.navigation_design '===' 'alternate'}}
-            {{> components/common/navigation-list-alternate}}
-            {{/if}}
+        {{#unless theme_settings.hide_content_navigation}}
+        <ul class="navPages-list nav-page-list one">
+          {{#each pages}}
+          <li class="navPages-item">
+            {{> components/custom/common/navigation-page-list}}
           </li>
           {{/each}}
-          {{/unless}}
-          {{#unless theme_settings.hide_content_navigation}}
-          <ul class="navPages-list nav-page-list two">
-            {{#each pages}}
-            <li class="navPages-item">
-              {{> components/custom/common/navigation-page-list}}
-            </li>
-            {{/each}}
-            <li class="navPages-item">
-              <div class="nav-page-list">
-                <a class="navPages-action navPages-action-depth-max has-subMenu is-root topLevel circled-icon"
-                  href="{{urls.account.index}}">
-                  <i class="icon" aria-hidden="true"><svg>
-                      <use xlink:href="#icon-account" />
-                    </svg></i>
-                  <i class="icon navPages-action-moreIcon fixed-dropdown mobile-only" aria-hidden="true"><svg>
-                      <use xlink:href="#icon-chevron-down" />
-                    </svg></i>
-                </a>
-                <div class="navPage-subMenu" id="navPages-{{id}}" aria-hidden="true" tabindex="-1">
-                  <ul class="navPage-subMenu-list">
-                    <li class="navPage-subMenu-item">
-                      {{#if customer}}
-                      <a class="navPage-subMenu-action navPages-action" href="{{urls.account.index}}">Account</a>
-                      {{else}}
-                      <a class="navPage-subMenu-action navPages-action" href="{{urls.auth.login}}">Login</a>
-                      {{/if}}
-                    </li>
-                    <li class="navPage-subMenu-item">
-                      {{#if customer}}
-                      <a class="navPage-subMenu-action navPages-action" href="{{urls.auth.logout}}">Logout</a>
-                      {{else}}
-                      <a class="navPage-subMenu-action navPages-action" href="{{urls.auth.create_account}}">Register</a>
-                      {{/if}}
-                    </li>
-                  </ul>
-                </div>
-                <div class="clear"></div>
-              </div>
-            </li>
-            <li class="navPages-item">
-              <div class="nav-page-list">
-                <a class="navPages-action circled-icon" href="{{urls.account.wishlists.all}}"><i class="icon"
-                    aria-hidden="true"><svg>
-                      <use xlink:href="#icon-wishlist" />
-                    </svg></i></a>
-                <div class="clear"></div>
-              </div>
-            </li>
-
-            <li class="navPages-item navUser-item--cart">
-              <a class="navUser-action navPages-action circled-icon" data-cart-preview data-dropdown="cart-preview-dropdown"
-                href="{{urls.cart}}" aria-label="{{lang 'cart.nav_aria_label'}}">
-                <span class="navUser-item-cartLabel"><svg class="header-icon cart-icon">
-                    <use xlink:href="#icon-cart"></use>
-                  </svg></span> <span class="countPill cart-quantity"></span>
+        </ul>
+        {{/unless}}
+        <ul class="navPages-list nav-page-list two">
+          <li class="navPages-item">
+            <div class="nav-page-list navPages-account">
+              <a class="navPages-action navPages-action-depth-max has-subMenu is-root topLevel circled-icon"
+                href="#" data-collapsible="navPages-account">
+                <i class="icon" aria-hidden="true"><svg>
+                    <use xlink:href="#icon-account" />
+                  </svg></i>
+                <i class="icon navPages-action-moreIcon fixed-dropdown mobile-only" aria-hidden="true"><svg>
+                    <use xlink:href="#icon-chevron-down" />
+                  </svg></i>
               </a>
-              <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
-            </li>
-
-            <li class="navPages-item currency">
-              <div class="nav-page-list">
-                {{> components/custom/common/currency-selector}}
-                <div class="clear"></div>
+              <div class="navPage-subMenu" id="navPages-account" aria-hidden="true" tabindex="-1">
+                <ul class="navPage-subMenu-list">
+                  <li class="navPage-subMenu-item">
+                    {{#if customer}}
+                    <a class="navPage-subMenu-action navPages-action" href="{{urls.account.index}}">Account</a>
+                    {{else}}
+                    <a class="navPage-subMenu-action navPages-action" href="{{urls.auth.login}}">Login</a>
+                    {{/if}}
+                  </li>
+                  <li class="navPage-subMenu-item">
+                    {{#if customer}}
+                    <a class="navPage-subMenu-action navPages-action" href="{{urls.auth.logout}}">Logout</a>
+                    {{else}}
+                    <a class="navPage-subMenu-action navPages-action" href="{{urls.auth.create_account}}">Register</a>
+                    {{/if}}
+                  </li>
+                </ul>
               </div>
-            </li>
-          </ul>
-          {{/unless}}
-          <ul>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li class="navPages-item">
+            <div class="nav-page-list">
+              <a class="navPages-action circled-icon" href="{{urls.account.wishlists.all}}"><i class="icon"
+                  aria-hidden="true"><svg>
+                    <use xlink:href="#icon-wishlist" />
+                  </svg></i></a>
+              <div class="clear"></div>
+            </div>
+          </li>
 
-          </ul>
+          <li class="navPages-item navUser-item--cart">
+            <a class="navUser-action navPages-action circled-icon" data-cart-preview data-dropdown="cart-preview-dropdown"
+              href="{{urls.cart}}" aria-label="{{lang 'cart.nav_aria_label'}}">
+              <span class="navUser-item-cartLabel"><svg class="header-icon cart-icon">
+                  <use xlink:href="#icon-cart"></use>
+                </svg></span> <span class="countPill cart-quantity"></span>
+            </a>
+            <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
+          </li>
+
+          <li class="navPages-item currency">
+            <div class="nav-page-list">
+              {{> components/custom/common/currency-selector}}
+              <div class="clear"></div>
+            </div>
+          </li>
         </ul>
       </div>
       </nav>

@@ -82,6 +82,7 @@
 
     @media only screen and (min-width: $screen-medium) {
         grid-template-columns: 1fr;
+        display: none;
 
         .sidebar-button {
             display: none;

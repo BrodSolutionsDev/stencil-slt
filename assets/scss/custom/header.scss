@@ -56,8 +56,28 @@ body.nav-dropdown-open .heroCarousel {
 	transform: translateZ(0);
 }
 
+// Account menu: the core stencil nav() mixin (components/stencil/navPages/_navPages.scss,
+// `@include nav($style: "navBar", $wrapper: "nav")`) compiles a
+// `.has-subMenu:hover > .navPage-subMenu { display: block; }`-style rule for every top-level
+// .has-subMenu item, opening it on hover regardless of the .is-open class. navigation-menu.html
+// now toggles .navPages-account's dropdown via a click-driven data-collapsible (see
+// assets/js/theme/global/menu.js), so hover needs to be disabled here and visibility handed
+// back entirely to .is-open. Left unscoped by breakpoint (rather than matched to whatever
+// breakpoint the vendor mixin uses) so it wins at every viewport width.
+.navPages-account {
+	.navPage-subMenu {
+		display: none !important;
+
+		&.is-open {
+			display: block !important;
+		}
+	}
+}
+
 .navPages-container {
 	display: flex;
+	justify-content: space-between;
+	max-width: 1330px !important;
 
 	// Safari-only fix: -webkit-overflow-scrolling: touch promotes this container to
 	// its own compositing layer, and the core stencil styles cap it at z-index: 0
@@ -404,6 +424,34 @@ body.nav-dropdown-open .heroCarousel {
 //         right: 0px !important;
 //     }
 // }
+
+
+
+.nav-right-fixed {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex: 1;
+	width: 100%;
+
+	.nav-right {
+		justify-content: space-between;
+		width: 100%;
+		flex: 1;
+
+		.one {
+			margin: 0 auto;
+			display: flex;
+			gap: 1.5rem;
+		}
+	}
+}
+
+.navPages-list + .navPages-list {
+	border-top: none;
+	padding-top: 0;
+	margin-top: 0;
+}
 .header-top {
 	padding: 1rem 0;
 	position: relative;
@@ -781,6 +829,7 @@ body.nav-dropdown-open .heroCarousel {
 // _navUser.scss are scoped to .navUser and don't apply here.
 .nav-right {
 	position: relative;
+	display: flex;
 
 	.dropdown-menu.active {
 		display: block;
@@ -973,7 +1022,8 @@ body.nav-dropdown-open .heroCarousel {
 #menu .nav-minus-logo,
 header div#menu,
 .navPages-wider {
-		max-width: 1330px;
+		// max-width: 1330px;
+		max-width: fit-content;
 		width: 100%;
 	}
 
@@ -1181,3 +1231,20 @@ header div#menu,
         align-items: center;
 	}
 }
+
+
+.navPages-wider.desktop {
+	margin: 0;
+}
+
+#menu {
+	.navPages-list {
+		.navPages-account {
+			.navPage-subMenu {
+				margin-top: 8px;
+				padding: 15px 0 !important;
+			}
+		}
+	}
+}
+
