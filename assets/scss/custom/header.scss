@@ -90,14 +90,6 @@ body.nav-dropdown-open .heroCarousel {
 	z-index: 999999 !important;
 }
 
-// Desktop-centered duplicate of the top-level page nav links (see
-// #menu .nav-links-centered below, min-width: $screen-medium). Hidden by
-// default so mobile keeps using the original in-flow copy inside
-// #menu .nav-page-list.two.
-#menu .nav-links-centered {
-	display: none;
-}
-
 @media (max-width: $screen-medium) {
 	[data-banner-location="top"] {
 		display: none;
@@ -175,30 +167,6 @@ body.nav-dropdown-open .heroCarousel {
 		#menu .nav-page-list.two {
 			display: flex !important;
 			align-items: center;
-		}
-
-		// The right nav row's own page links are mobile-only; the centered
-		// duplicate below (.nav-links-centered) takes over at desktop.
-		#menu .nav-page-list.two .nav-page-list-mobile-link {
-			display: none;
-		}
-
-		// Centered page nav: absolutely centered on .navPages-wider (the
-		// header's centered content column inside .navPages-container),
-		// independent of the icon row's width so it stays screen-centered
-		// regardless of how much space the account/wishlist/cart/currency
-		// icons take on the right.
-		#menu .nav-links-centered {
-			display: flex !important;
-			align-items: center;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			z-index: 5;
-			list-style: none;
-			margin: 0;
-			padding: 0;
 		}
 
 		// Chevron icon sizing
