@@ -72,6 +72,47 @@
 
   &-rating {
     min-width: fit-content;
+    width: 100%;
+    position: relative;
+
+    &--latestReview {
+      display: none;
+      position: absolute;
+      background: #ffffff;
+      z-index: 999;
+      border: 1px solid stencilColor("label-backgroundColor");
+      padding: 1rem;
+
+      &--name {
+        margin: 0;
+      }
+
+      &--date {
+        margin: 0;
+        margin-bottom: 1rem;
+      }
+
+      &--rating {
+        margin: 0;
+        margin-bottom: 0.5rem;
+      }
+
+      &--title {
+        margin: 0;
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+
+      &--text {
+        margin: 0;
+      }
+    }
+
+    &:hover {
+      .productView-rating--latestReview {
+        display: block;
+      }
+    }
   }
 
   &-options {

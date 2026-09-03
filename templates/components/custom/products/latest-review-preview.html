@@ -1,0 +1,33 @@
+<div class="productView-rating--latestReview">
+    {{#if product.reviews.list.[0].name}}
+        <strong class="productView-rating--latestReview--name">{{product.reviews.list.[0].name}}</strong>
+    {{/if}}
+    {{#if product.reviews.list.[0].date}}
+        <p class="productView-rating--latestReview--date">{{product.reviews.list.[0].date}}</p>
+    {{/if}}
+    {{#if product.reviews.list.[0].rating}}
+        <div class="productView-rating--latestReview--rating">
+            {{#for 1 5}}
+                {{#if ../product.reviews.list.[0].rating '>=' $index}}
+                    <span class="icon icon--ratingFull">
+                        <svg>
+                            <use xlink:href="#icon-star" />
+                        </svg>
+                    </span>
+                {{else}}
+                    <span class="icon icon--ratingEmpty">
+                        <svg>
+                            <use xlink:href="#icon-star" />
+                        </svg>
+                    </span>
+                {{/if}}
+            {{/for}}
+        </div>
+    {{/if}}
+    {{#if product.reviews.list.[0].title}}
+        <strong class="productView-rating--latestReview--title">{{product.reviews.list.[0].title}}</strong>
+    {{/if}}
+    {{#if product.reviews.list.[0].text}}
+        <p class="productView-rating--latestReview--text">{{product.reviews.list.[0].text}}</p>
+    {{/if}}
+</div>
