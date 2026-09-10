@@ -14,7 +14,6 @@ import privacyCookieNotification from './global/cookieNotification';
 import adminBar from './global/adminBar';
 import carousel from './common/carousel';
 import loadingProgressBar from './global/loading-progress-bar';
-import svgInjector from './global/svg-injector';
 import showAccordion from './custom/accordion';
 
 export default class Global extends PageManager {
@@ -51,7 +50,6 @@ export default class Global extends PageManager {
             adminBar(secureBaseUrl, channelId, maintenanceModeSettings, JSON.parse(adminBarLanguage), productId, categoryId);
         }
         loadingProgressBar();
-        svgInjector();
         showAccordion();
     }
 }

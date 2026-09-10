@@ -10,7 +10,7 @@ module.exports = {
     context: __dirname,
     entry: {
         main: './assets/js/app.js',
-        head_async: ['lazysizes'],
+        head_async: ['lazysizes', './assets/js/theme/custom/svg-sprite-loader.js'],
         font: './assets/js/theme/common/font.js',
         polyfills: './assets/js/polyfills.js',
         polyfill_form_data: ['formdata-polyfill'],
