@@ -46,7 +46,7 @@ product:
         <div class="productView-productReviews">
             {{#if settings.show_product_reviews}}
                <div class="tabs-contents">
-                   {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+                   {{> components/custom/products/reviews reviews=product.reviews product=product urls=urls}}
                </div>
            {{/if}}
         </div>
