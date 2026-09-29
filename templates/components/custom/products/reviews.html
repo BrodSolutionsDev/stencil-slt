@@ -3,7 +3,7 @@
     <div class="productReviews-header">
         <h3 class="productReviews-header--title">Reviews</h3>
         <span class="productReviews-header--rating productReview-rating">
-            <span>{{ product.rating }}</span>
+            <span>{{toFixed product.rating 1}}</span>
             {{> components/products/ratings rating=product.rating}}
         </span>
 
