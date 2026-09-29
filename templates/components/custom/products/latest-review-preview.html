@@ -25,9 +25,9 @@
         </div>
     {{/if}}
     {{#if product.reviews.list.[0].title}}
-        <strong class="productView-rating--latestReview--title">{{product.reviews.list.[0].title}}</strong>
+        <strong class="productView-rating--latestReview--title">{{{product.reviews.list.[0].title}}}</strong>
     {{/if}}
     {{#if product.reviews.list.[0].text}}
-        <p class="productView-rating--latestReview--text">{{product.reviews.list.[0].text}}</p>
+        <p class="productView-rating--latestReview--text">{{{product.reviews.list.[0].text}}}</p>
     {{/if}}
 </div>

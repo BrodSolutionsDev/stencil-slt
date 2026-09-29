@@ -67,6 +67,23 @@ export function initReviewReadMore() {
 }
 
 /**
+ * Smooth-scrolls to the reviews section when the "(N Reviews)" link near
+ * the product title is clicked, instead of the default anchor jump.
+ */
+export function initReviewScrollLink() {
+    $('body').on('click', '.productView-reviewLink.scroll-to-view > a', (event) => {
+        const $reviews = $('.productReviews');
+
+        if (!$reviews.length) {
+            return;
+        }
+
+        event.preventDefault();
+        $('html, body').animate({ scrollTop: $reviews.offset().top }, 1000);
+    });
+}
+
+/**
  * The core Review component (theme/product/reviews.js) force-collapses the
  * product reviews section on every page load unless the URL is a
  * "#product-reviews" pagination link. Client wants reviews visible by
