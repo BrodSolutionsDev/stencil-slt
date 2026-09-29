@@ -1,79 +1,153 @@
 .productView-productReviews {
-    padding: 0;
-    border: none;
+  padding: 0;
+  border: none;
 }
 
 .productReviews {
-    &-header {
-        background: stencilColor('main-nav-backgroundColor');
-        padding: 1rem;
-        display: grid;
-        grid-template-areas: 
-        'title rating'
-        'cta cta';
-        gap: 1rem;
-        margin-bottom: 1rem;
-        justify-content: space-between;
+  &-header {
+    background: stencilColor("main-nav-backgroundColor");
+    padding: 1rem;
+    display: grid;
+    grid-template-areas:
+      "title rating"
+      "cta cta";
+    gap: 1rem;
+    margin-bottom: 1rem;
+    justify-content: space-between;
 
-        &--title {
-            grid-area: title;
-            margin: 0;
-        }
-
-        &--rating {
-            grid-area: rating;
-            display: flex;
-            justify-content: flex-start;
-            align-items: flex-end;
-            margin-bottom: 0;
-
-            span {
-                margin-right: 0.5rem;
-                font-size: 1rem;
-                line-height: 1rem;
-            }
-
-            .icon {
-                width: 1rem;
-                height: 1rem;
-
-                svg {
-                    width: 100%;
-                    height: 100%;
-                }
-            }
-        }
-
-        &--cta {
-            grid-area: cta;
-            margin-bottom: 0;
-            width: 100%;
-        }
+    &--title {
+      grid-area: title;
+      margin: 0;
     }
+
+    &--rating {
+      grid-area: rating;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+      margin-bottom: 0;
+
+      span {
+        margin-right: 0.5rem;
+        font-size: 1rem;
+        line-height: 1rem;
+      }
+
+      .icon {
+        width: 1rem;
+        height: 1rem;
+
+        svg {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    &--cta {
+      grid-area: cta;
+      margin-bottom: 0;
+      width: 100%;
+    }
+  }
+
+  &-content {
+    .productReviews-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      max-width: 100%;
+      margin: 0 auto;
+      gap: 1rem;
+
+      &::before,
+      &::after {
+        display: none;
+      }
+
+      .productReview {
+        background: stencilColor("main-nav-backgroundColor");
+        width: 100%;
+        height: fit-content;
+        padding: 1rem;
+        height: 100%;
+
+        &-author {
+            color: stencilColor("color-textBase");
+            margin-top: 0.25rem;
+        }
+
+        &-body {
+          margin-bottom: 0;
+        }
+
+        &-readMore {
+          background: none;
+          border: 0;
+          padding: 0;
+          color: stencilColor("color-textLink");
+          font-weight: bold;
+
+          &:hover,
+          &:focus {
+            color: stencilColor("color-textLink--hover");
+          }
+        }
+
+        &-fullContent {
+          display: none;
+        }
+
+        // Kept shorter than the modal's 90% max-height so the core
+        // translate(-50%, -60%) centering doesn't push the top off-screen.
+        &-modal {
+          max-height: 65vh;
+          overflow-y: auto;
+
+          .productReview-title {
+            margin-top: 0.5rem;
+          }
+
+          .productReview-body {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media (min-width: 401px) {
+  .productReviews {
+    &-header {
+      grid-template-areas:
+        "title title"
+        "rating cta";
+      gap: 0;
+
+      &--rating {
+        span {
+          font-size: 1.5rem;
+          line-height: 1.5rem;
+        }
+
+        .icon {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+      }
+
+      &--cta {
+        width: fit-content;
+      }
+    }
+  }
+}
+
+@media (min-width: 801px) {
     .productReviews {
-        &-header {
-            grid-template-areas:
-            'title title'
-            'rating cta';
-            gap: 0;
-
-            &--rating {
-                span {
-                    font-size: 1.5rem;
-                    line-height: 1.5rem;
-                }
-
-                .icon {
-                    width: 1.5rem;
-                    height: 1.5rem;
-                }
-            }
-
-            &--cta {
-                width: fit-content;
+        &-content {
+            .productReviews-list {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
     }
