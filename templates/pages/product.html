@@ -76,3 +76,13 @@ product:
         });
     })();
 </script>
+
+<script>
+rdt('track', 'ViewContent', {
+    conversionId: `view-content-${Date.now()}`,
+    products: [{
+        id: '{{product.id}}',
+        name: '{{product.title}}',
+    }]
+});
+</script>

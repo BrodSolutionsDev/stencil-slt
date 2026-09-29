@@ -31,6 +31,15 @@
 
 {{{ footer.scripts }}}
 
+<script>
+rdt('track', 'Purchase', {
+  currency: '{{checkout.order.currency.code}}',
+  value: "{{checkout.order.orderAmount}}",
+  transactionId: '{{checkout.order.id}}',
+  conversionId: '{{checkout.order.id}}'
+});
+</script>
+
 {{/partial}}
 
 {{> layout/empty}}
