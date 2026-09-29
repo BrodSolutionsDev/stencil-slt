@@ -1,4 +1,53 @@
+import { api } from '@bigcommerce/stencil-utils';
 import { defaultModal } from '../global/modal';
+
+const LOAD_MORE_TEXT = 'Load More Reviews';
+const LOADING_TEXT = 'Loading...';
+
+/**
+ * Appends the next page of reviews via AJAX when the "Load More Reviews"
+ * button is clicked. The next page URL comes from the button's
+ * data-next-url; the button is removed once the last page is loaded.
+ */
+export function initReviewLoadMore() {
+    $('body').on('click', '[data-reviews-load-more]', (event) => {
+        event.preventDefault();
+
+        const $button = $(event.currentTarget);
+
+        if ($button.prop('disabled')) {
+            return;
+        }
+
+        const resetButton = () => $button.prop('disabled', false).text(LOAD_MORE_TEXT);
+
+        $button.prop('disabled', true).text(LOADING_TEXT);
+
+        api.getPage($button.data('nextUrl'), { template: 'custom/products/reviews-ajax' }, (err, response) => {
+            if (err) {
+                resetButton();
+                return;
+            }
+
+            const $response = $('<div>').html(response);
+            const $nextButton = $response.find('[data-reviews-load-more]');
+            const $list = $button.closest('.productReviews').find('.productReviews-list');
+            const $count = $button.siblings('[data-reviews-count]');
+            const total = $count.data('total');
+
+            $list.append($response.find('.productReview'));
+
+            if ($nextButton.length) {
+                $button.data('nextUrl', $nextButton.data('nextUrl'));
+                $count.text(`Showing ${$list.children('.productReview').length} of ${total} reviews`);
+                resetButton();
+            } else {
+                $count.text(`Showing all ${total} reviews`);
+                $button.remove();
+            }
+        });
+    });
+}
 
 /**
  * Opens the full review in the theme's shared #modal when a truncated

@@ -65,6 +65,11 @@
             </li>
             {{/each}}
         </ul>
-        {{> components/common/paginator pagination.reviews}}
+        {{#if pagination.reviews.next}}
+        <div class="productReviews-loadMore">
+            <p class="productReviews-count" data-reviews-count data-total="{{product.num_reviews}}">Showing {{reviews.list.length}} of {{product.num_reviews}} reviews</p>
+            <button type="button" class="button button--primary" data-reviews-load-more data-next-url="{{pagination.reviews.next}}">Load More Reviews</button>
+        </div>
+        {{/if}}
     </div>
 </section>

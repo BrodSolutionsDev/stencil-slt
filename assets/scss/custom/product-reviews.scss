@@ -152,3 +152,29 @@
         }
     }
 }
+
+.productReviews-loadMore {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1.5rem;
+
+    .productReviews-count {
+        margin: 0 0 0.75rem;
+        font-size: 0.875rem;
+        color: stencilColor("color-greyDark");
+    }
+
+    .button--primary:disabled {
+        &,
+        &:hover,
+        &:focus {
+            // vault.scss and global.scss set .button--primary background/border with !important
+            background-color: stencilColor("color-greyLighter") !important;
+            border-color: stencilColor("color-greyLighter") !important;
+            color: stencilColor("color-greyDarker");
+            cursor: not-allowed;
+        }
+    }
+}
