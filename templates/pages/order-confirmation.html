@@ -31,14 +31,7 @@
 
 {{{ footer.scripts }}}
 
-<script>
-rdt('track', 'Purchase', {
-  currency: '{{checkout.order.currency.code}}',
-  value: "{{checkout.order.orderAmount}}",
-  transactionId: '{{checkout.order.id}}',
-  conversionId: '{{checkout.order.id}}'
-});
-</script>
+{{> components/custom/checkout/reddit-purchase}}
 
 {{/partial}}
 

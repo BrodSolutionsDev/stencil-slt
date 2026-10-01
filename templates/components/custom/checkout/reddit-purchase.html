@@ -1,0 +1,45 @@
+<script>
+(function () {
+    var orderId = '{{checkout.order.id}}';
+
+    function track(order) {
+        var items = order ? [].concat(
+            order.lineItems.physicalItems || [],
+            order.lineItems.digitalItems || []
+        ) : [];
+
+        var data = {
+            conversionId: String(order ? order.orderId : orderId),
+            externalId: window.extId
+        };
+
+        if (order) {
+            data.currency = order.currency.code;
+            data.value = Number(order.orderAmount);
+            data.itemCount = items.reduce(function (sum, item) { return sum + item.quantity; }, 0);
+            data.products = items.map(function (item) {
+                return { id: String(item.productId), name: item.name };
+            });
+            if (order.billingAddress && order.billingAddress.email) {
+                data.email = order.billingAddress.email;
+            }
+        }
+
+        if (typeof rdt === 'function') {
+            rdt('track', 'Purchase', data);
+        }
+    }
+
+    if (!orderId) {
+        return;
+    }
+
+    fetch('/api/storefront/order/' + orderId, { credentials: 'include' })
+        .then(function (res) {
+            if (!res.ok) throw new Error(res.status);
+            return res.json();
+        })
+        .then(track)
+        .catch(function () { track(null); });
+})();
+</script>

@@ -115,6 +115,7 @@ document.addEventListener('submit', function (e) {
 
   rdt('track', 'AddToCart', {
     conversionId: 'atc-' + Date.now(),
+    externalId: window.extId,
     currency: '{{currency_selector.active_currency_code}}',
     value: price * qty,
     itemCount: qty,
